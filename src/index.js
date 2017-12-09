@@ -29,7 +29,7 @@ class App extends React.Component {
          <a-asset-item id="off" src="/model/scene.gltf" />
           <a-asset-item id="on" src="/model/bulb_open.gltf" />
         </a-assets>
-       <VoiceRecognitionDemo/>
+       
        <Environment/>
         <Bulb/>
         <a-entity laser-controls line="color: red; opacity: 1"></a-entity>
