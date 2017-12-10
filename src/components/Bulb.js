@@ -3,6 +3,9 @@ import 'babel-polyfill';
 import { Entity } from 'aframe-react';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import SpeechRecognition from 'react-speech-recognition'
+import Voice from './VoiceRecog'
+
 class Bulb extends React.Component {
   constructor(props) {
     super(props);
@@ -34,6 +37,7 @@ class Bulb extends React.Component {
   render() {
     return (
       <Entity>
+       
         {/* ON panel */}
         <Entity primitive="a-plane"
           height="1" width="1"
