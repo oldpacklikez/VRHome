@@ -1,17 +1,37 @@
-import 'aframe';
-import 'babel-polyfill';
-import { Entity } from 'aframe-react';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import SpeechRecognition from 'react-speech-recognition'
-import Voice from './VoiceRecog'
+import 'aframe'
+import 'babel-polyfill'
+import { Entity } from 'aframe-react'
+import React from 'react'
+import annyang from 'annyang'
 
 class Bulb extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      bulb: false
+      bulb: false,
+      hello: false
     };
+  }
+  componentDidMount() {
+    if (annyang) {
+      // Let's define a command.
+      var commands = {
+        'turn on the light': () => this.setState({ bulb: !this.state.bulb }),
+        'turn off the light': () => this.setState({ bulb: false })
+      };
+
+      // Add our commands to annyang
+      annyang.addCommands(commands);
+
+      //test
+      annyang.addCallback('result', function(userSaid, commandText, phrases) {
+        console.log(userSaid); // sample output: 'hello'
+        console.log(commandText); // sample output: 'hello (there)'
+        console.log(phrases); // sample output: ['hello', 'halo', 'yellow', 'polo', 'hello kitty']
+      });
+      // Start listening.
+      annyang.start();
+    }
   }
   changeBulb() {
     this.setState({

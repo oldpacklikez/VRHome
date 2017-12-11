@@ -5,7 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Bulb from './components/Bulb';
 import Environment from './components/Environment';
-import VoiceRecog from './components/VoiceRecog'
+
 class App extends React.Component {
   constructor(props) {
     super(props);
