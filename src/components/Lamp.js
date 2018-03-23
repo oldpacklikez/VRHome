@@ -15,58 +15,44 @@ class Lamp extends React.Component {
             color: "#FFF0FF",
             data: {
                 'app_id': 12
-            }
+            },
+            chart: []
         };
-
+        this.reqLog.bind(this)
 
     }
     timeFormat(day) {
         let d = new Date()
-        console.log("Date : " + (d.getUTCFullYear()
-            + '-'
-            + (d.getUTCMonth() + 1)
-            + '-'
-            + (d.getUTCDate() - day)
-            + 'T'
-            + (d.getUTCHours() + 7)
-            + ':'
-            + d.getUTCMinutes()
-            + ':00'
-        ))
-        return (d.getUTCFullYear()
-            + '-'
-            + (d.getUTCMonth() + 1)
-            + '-'
-            + (d.getUTCDate() - day)
-            + 'T'
-            + (d.getUTCHours() + 7)
-            + ':'
-            + d.getUTCMinutes()
-            + ':00'
-        )
+        if (day != 0) {
+            d.setDate(d.getDate() - day)
+            d.setUTCHours(0, 0, 0)
+        }
+        return d.toISOString().split('.')[0]
     }
 
     reqLog(day) {
-      
-        fetch('http://161.246.5.69/api/app_usage_log/?format=json&username=test&api_key=576ce7157410fef051b42ed5ed393498dc58a1b5&start_time=' + this.timeFormat(day) + '&end_time=' + this.timeFormat(0))
+        var sum = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        fetch('http://161.246.5.69/api/app_usage_log/?format=json&username=test&api_key=576ce7157410fef051b42ed5ed393498dc58a1b5&start_time=' + this.timeFormat(day) + '&end_time=' + this.timeFormat(0) + '&app_id=' + this.props.id)
             .then(response => response.json())
-            .then(datar => console.log("hi")
-                // Object.assign(
-                //     this.state.data, datar.objects.filter(
-                //         x => { return x.app_id == this.props.id }
-                //     )
-                //)
-            )
+            .then(datar => {
+                var temp = datar.objects
 
-        // this.makeChart()
+                temp.forEach(element => {
+                    let d = new Date(element.created_date)
+                    sum[d.getDate()] = (sum[d.getDate()] + element.kWh)
+                });
+                
+            }
+            )
+        return sum
+
     }
 
-    // makeChart() {
-    //     var { data } = this.state
-    //     // console.log(data)
-    //     console.log( data.filter( (x) => { return x.created_date < this.timeFormat(0) }))
+    makeChart() {
 
-    // }
+
+
+    }
 
 
 
@@ -96,7 +82,6 @@ class Lamp extends React.Component {
         this.reqLamp("set_On_Off", this.state.lamp)
 
     }
-
     lampOFF() {
         this.setState({
             lamp: false
@@ -104,9 +89,6 @@ class Lamp extends React.Component {
         this.reqLamp("set_On_Off", this.state.lamp)
 
     }
-
-
-
     brightToggle() {
         let n = this.state.bright
         if (n === 25)
@@ -124,7 +106,6 @@ class Lamp extends React.Component {
         this.reqLamp("set_brightness", this.state.bright)
         // console.log(n)
     }
-
     colorNormal() {
         let n = this.state.color
         this.setState({
@@ -132,7 +113,6 @@ class Lamp extends React.Component {
         })
         this.reqLamp("set_color", 16749353)
     }
-
     colorWarm() {
         let n = this.state.color
         this.setState({
@@ -140,7 +120,6 @@ class Lamp extends React.Component {
         })
         this.reqLamp("set_color", 4234495)
     }
-
     colorCool() {
         let n = this.state.color
         this.setState({
@@ -148,7 +127,6 @@ class Lamp extends React.Component {
         })
         this.reqLamp("set_color", 16777215)
     }
-
     lampShow() {
         this.setState({
             visible: !this.state.visible
@@ -182,11 +160,11 @@ class Lamp extends React.Component {
     //             })
     //             )
     //         , 3000);
-
-
     // }
     render() {
-        this.reqLog(20)
+        console.log( reqLog(30))
+        var x = reqLog(30)
+        x.forEach(x=>console.log('this'+x))
         return (
             <Entity >
                 <Entity primitive="a-plane"
@@ -294,6 +272,133 @@ class Lamp extends React.Component {
                             align: 'center'
                         }} />
                     </Entity>
+                    {/* Graph */}
+                    <Entity primitive="a-plane"
+                        position={{ x: -0.137, y: -1.152, z: 1.153 }}
+                        rotation="-50 0 0"
+                        height="1.5"
+                        width="3"
+                        color="black"
+                        events={{
+                            click: this.brightToggle.bind(this)
+                        }}>
+                        {/* day chart */}
+                        <Entity primitive="a-box"
+                            position={{ x: -1.2, y: -0.3, z: 0.153 }}
+                            height={1 }
+                            width="0.25"
+                            depth="0.3"
+                            color="white"
+                        >
+                            <Entity text={{
+                                value: 'Mon',
+                                color: 'black',
+                                width: 4,
+                                align: 'center'
+
+                            }}
+                                rotation='0 0 90'
+                                position="0 0 0.3" />
+                        </Entity>
+                        <Entity primitive="a-box"
+                            position={{ x: -0.8, y: 0, z: 0.153 }}
+                            height="1"
+                            width="0.25"
+                            depth="0.3"
+                            color="white"
+                        >
+                            <Entity text={{
+                                value: 'Mon',
+                                color: 'black',
+                                width: 4,
+                                align: 'center'
+
+                            }}
+                                rotation='0 0 90' />
+                        </Entity>
+                        <Entity primitive="a-box"
+                            position={{ x: -0.4, y: 0, z: 0.153 }}
+                            height="1"
+                            width="0.25"
+                            depth="0.3"
+                            color="white"
+                        >
+                            <Entity text={{
+                                value: 'Mon',
+                                color: 'black',
+                                width: 4,
+                                align: 'center'
+
+                            }}
+                                rotation='0 0 90' />
+                        </Entity>
+                        <Entity primitive="a-box"
+                            position={{ x: 0, y: 0, z: 0.153 }}
+                            height="1"
+                            width="0.25"
+                            depth="0.3"
+                            color="white"
+                        >
+                            <Entity text={{
+                                value: 'Mon',
+                                color: 'black',
+                                width: 4,
+                                align: 'center'
+
+                            }}
+                                rotation='0 0 90' />
+                        </Entity>
+                        <Entity primitive="a-box"
+                            position={{ x: 0.4, y: 0, z: 0.153 }}
+                            height="1"
+                            width="0.25"
+                            depth="0.3"
+                            color="white"
+                        >
+                            <Entity text={{
+                                value: 'Mon',
+                                color: 'black',
+                                width: 4,
+                                align: 'center'
+
+                            }}
+                                rotation='0 0 90' />
+                        </Entity>
+                        <Entity primitive="a-box"
+                            position={{ x: 0.8, y: 0, z: 0.153 }}
+                            height="1"
+                            width="0.25"
+                            depth="0.3"
+                            color="white"
+                        >
+                            <Entity text={{
+                                value: 'Mon',
+                                color: 'black',
+                                width: 4,
+                                align: 'center'
+
+                            }}
+                                rotation='0 0 90' />
+                        </Entity>
+                        <Entity primitive="a-box"
+                            position={{ x: 1.2, y: 0, z: 0.153 }}
+                            height="1"
+                            width="0.25"
+                            depth="0.3"
+                            color="white"
+                        >
+                            <Entity text={{
+                                value: 'Mon',
+                                color: 'black',
+                                width: 4,
+                                align: 'center'
+
+                            }}
+                                rotation='0 0 90' />
+                        </Entity>
+
+                    </Entity>
+
                 </Entity>
 
 
