@@ -1,0 +1,84 @@
+[
+    {
+        "cmd": {
+            "control_type": "toggle",
+            "description": "Turn on or off {name}",
+            "name": "set_On_Off",
+            "parameters": [
+                {
+                    "name": "setTo",
+                    "type": "integer"
+                }
+            ],
+            "voice_commands": [
+                {
+                    "cmd": "smarthome.device.switch.on",
+                    "value": "1"
+                },
+                {
+                    "cmd": "smarthome.device.switch.off",
+                    "value": "0"
+                }
+            ]
+        },
+        "max_value": 1,
+        "min_value": 0,
+        "name": "status",
+        "value": 1,
+        "value_step": 1
+    },
+    {
+        "cmd": {
+            "control_type": "step",
+            "name": "set_temperature",
+            "parameters": [
+                {
+                    "name": "setTo",
+                    "type": "integer"
+                }
+            ],
+            "voice_commands": [
+                {
+                    "cmd": "smarthome.heating.set",
+                    "response": "\"Setting {name}'s temperature to {value} degree Celsius\"",
+                    "response_nochange": "\"{name}'s temperature is already {value} degree Celsius\"",
+                    "value": "max(16, min(40, int(obj[\"result\"][\"contexts\"][0][\"parameters\"][\"final-value\"])))"
+                },
+                {
+                    "cmd": "smarthome.heating.up",
+                    "response": "\"Setting {name}'s temperature to {value} degree Celsius\"",
+                    "response_nochange": "\"{name}'s temperature is already {value} degree Celsius\"",
+                    "value": "min(40, value['temperature'] + int(obj['result']['contexts'][0]['parameters']['change-value'])) if obj['result']['contexts'][0]['parameters']['change-value'] else min(40, value['temperature'] + 1)"
+                },
+                {
+                    "cmd": "smarthome.heating.down",
+                    "response": "\"Setting {name}'s temperature to {value} degree Celsius\"",
+                    "response_nochange": "\"{name}'s temperature is already {value} degree Celsius\"",
+                    "value": "max(16, value['temperature'] - int(obj['result']['contexts'][0]['parameters']['change-value'])) if obj['result']['contexts'][0]['parameters']['change-value'] else max(16, value['temperature'] - 1)"
+                },
+                {
+                    "cmd": "smarthome.heating.up.implicit",
+                    "response": "\"Setting {name}'s temperature to {value} degree Celsius\"",
+                    "response_nochange": "\"{name}'s temperature is already {value} degree Celsius\"",
+                    "value": "min(40, value[\"temperature\"] + 1)"
+                },
+                {
+                    "cmd": "smarthome.heating.down.implicit",
+                    "response": "\"Setting {name}'s temperature to {value} degree Celsius\"",
+                    "response_nochange": "\"{name}'s temperature is already {value} degree Celsius\"",
+                    "value": "max(16, value[\"temperature\"] - 1)"
+                }
+            ]
+        },
+        "max_value": 40,
+        "min_value": 16,
+        "name": "temperature",
+        "value": 24,
+        "value_step": 1
+    },
+    {
+        "cmd": null,
+        "name": "current_consumption",
+        "value": 0.003
+    }
+]

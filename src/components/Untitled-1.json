@@ -1,0 +1,125 @@
+[
+    {
+        "cmd": {
+            "control_type": "toggle",
+            "description": "Turn on or off {name}",
+            "name": "set_On_Off",
+            "parameters": [
+                {
+                    "name": "setTo",
+                    "type": "integer"
+                }
+            ],
+            "voice_commands": [
+                {
+                    "cmd": "smarthome.device.switch.on",
+                    "response": "'Turning on {name}'",
+                    "response_nochange": "'{name} is already on'",
+                    "value": "1"
+                },
+                {
+                    "cmd": "smarthome.device.switch.off",
+                    "response": "'Turning off {name}'",
+                    "response_nochange": "'{name} is already off'",
+                    "value": "0"
+                }
+            ]
+        },
+        "max_value": 1,
+        "min_value": 0,
+        "name": "status",
+        "value": 1,
+        "value_step": 1
+    },
+    {
+        "cmd": {
+            "control_type": "slider",
+            "name": "set_volume",
+            "parameters": [
+                {
+                    "name": "setTo",
+                    "type": "integer"
+                }
+            ],
+            "voice_commands": [
+                {
+                    "cmd": "smarthome.device.volume.set",
+                    "response": "\"Setting {name}'s volume to {value}\"",
+                    "response_nochange": "\"{name}'s volume is already {value}\"",
+                    "value": "max(0, min(100, int(obj[\"result\"][\"contexts\"][0][\"parameters\"][\"final-value\"])))"
+                },
+                {
+                    "cmd": "smarthome.device.volume.up",
+                    "response": "\"Setting {name}'s volume to {value}\"",
+                    "response_nochange": "\"{name}'s volume is already {value}\"",
+                    "value": "min(100, value['volume'] + int(obj['result']['contexts'][0]['parameters']['change-value'])) if obj['result']['contexts'][0]['parameters']['change-value'] else min(100, value['volume'] + 10)"
+                },
+                {
+                    "cmd": "smarthome.device.volume.down",
+                    "response": "\"Setting {name}'s volume to {value}\"",
+                    "response_nochange": "\"{name}'s volume is already {value}\"",
+                    "value": "max(0, value['volume'] - int(obj['result']['contexts'][0]['parameters']['change-value'])) if obj['result']['contexts'][0]['parameters']['change-value'] else max(0, value['volume'] - 10)"
+                },
+                {
+                    "cmd": "smarthome.device.volume.up.implicit",
+                    "response": "\"Setting {name}'s volume to {value}\"",
+                    "response_nochange": "\"{name}'s volume is already {value}\"",
+                    "value": "min(100, value[\"volume\"] + 10)"
+                },
+                {
+                    "cmd": "smarthome.device.volume.down.implicit",
+                    "response": "\"Setting {name}'s volume to {value}\"",
+                    "response_nochange": "\"{name}'s volume is already {value}\"",
+                    "value": "max(0, value[\"volume\"] - 10)"
+                }
+            ]
+        },
+        "max_value": 100,
+        "min_value": 0,
+        "name": "volume",
+        "value": 51,
+        "value_step": 1
+    },
+    {
+        "cmd": {
+            "control_type": "step",
+            "name": "set_channel",
+            "parameters": [
+                {
+                    "name": "setTo",
+                    "type": "integer"
+                }
+            ],
+            "voice_commands": [
+                {
+                    "cmd": "smarthome.device.channel.set",
+                    "response": "\"Setting {name}'s channel to {value}\"",
+                    "response_nochange": "\"{name}'s channel is already {value}\"",
+                    "value": "max(1, min(6, int(obj[\"result\"][\"contexts\"][0][\"parameters\"][\"final-value\"])))"
+                },
+                {
+                    "cmd": "smarthome.device.channel.up",
+                    "response": "\"Setting {name}'s channel to {value}\"",
+                    "response_nochange": "\"{name}'s channel is already {value}\"",
+                    "value": "min(6, value['channel'] + 1)"
+                },
+                {
+                    "cmd": "smarthome.device.channel.down",
+                    "response": "\"Setting {name}'s channel to {value}\"",
+                    "response_nochange": "\"{name}'s channel is already {value}\"",
+                    "value": "max(1, value['channel'] - 1)"
+                }
+            ]
+        },
+        "max_value": 6,
+        "min_value": 1,
+        "name": "channel",
+        "value": 6,
+        "value_step": 1
+    },
+    {
+        "cmd": null,
+        "name": "current_consumption",
+        "value": 0.003
+    }
+]
