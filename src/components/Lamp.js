@@ -16,10 +16,10 @@ class Lamp extends React.Component {
             data: {
                 'app_id': 12
             },
-            chart: []
+            sum: [],
+            dayCount: 0
         };
         this.reqLog.bind(this)
-
     }
     timeFormat(day) {
         let d = new Date()
@@ -29,32 +29,24 @@ class Lamp extends React.Component {
         }
         return d.toISOString().split('.')[0]
     }
-
     reqLog(day) {
         var sum = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-        fetch('http://161.246.5.69/api/app_usage_log/?format=json&username=test&api_key=576ce7157410fef051b42ed5ed393498dc58a1b5&start_time=' + this.timeFormat(day) + '&end_time=' + this.timeFormat(0) + '&app_id=' + this.props.id)
+        var temp
+        return fetch('http://161.246.5.69/api/app_usage_log/?format=json&username=test&api_key=576ce7157410fef051b42ed5ed393498dc58a1b5&start_time=' + this.timeFormat(day) + '&end_time=' + this.timeFormat(0) + '&app_id=' + this.props.id)
             .then(response => response.json())
             .then(datar => {
-                var temp = datar.objects
-
+                temp = datar.objects
                 temp.forEach(element => {
                     let d = new Date(element.created_date)
                     sum[d.getDate()] = (sum[d.getDate()] + element.kWh)
-                });
-                
-            }
-            )
-        return sum
-
+                })
+            })
+            .then(() => {
+                this.setState({
+                    sum: sum,
+                })
+            })
     }
-
-    makeChart() {
-
-
-
-    }
-
-
 
     reqLamp(cmd, value) {
         fetch('http://161.246.5.69/api/appliances/' + this.props.id + '/command/?format=json&username=test&api_key=576ce7157410fef051b42ed5ed393498dc58a1b5',
@@ -147,24 +139,30 @@ class Lamp extends React.Component {
         this.reqLamp("set_temperature", this.state.temp)
     }
 
-    // componentDidMount() {
-    //     console.log("hit in")
-    //     this.interval = setInterval(() =>
-    //         fetch('http://161.246.5.69/api/appliances/' + this.props.id + '/info/?format=json&username=test&api_key=576ce7157410fef051b42ed5ed393498dc58a1b5')
-    //             .then(response => response.json())
-    //             .then(data => this.setState({
-    //                 lamp: data[0].value ? true : false,
-    //                 color: "#" + (data[2].value).toString(16),
-    //                 bright: data[1].value
+    componentDidMount() {
+        console.log("hit in")
+        // this.interval = setInterval(() =>
+        fetch('http://161.246.5.69/api/appliances/' + this.props.id + '/info/?format=json&username=test&api_key=576ce7157410fef051b42ed5ed393498dc58a1b5')
+            .then(response => response.json())
+            .then(data => this.setState({
+                lamp: data[0].value ? true : false,
+                color: "#" + (data[2].value).toString(16),
+                bright: data[1].value
 
-    //             })
-    //             )
-    //         , 3000);
-    // }
+            })
+            )
+        // , 3000);
+        this.reqLog(30)
+
+    }
     render() {
-        console.log( reqLog(30))
-        var x = reqLog(30)
-        x.forEach(x=>console.log('this'+x))
+
+
+        let { sum, dayCount } = this.state
+        var dd = new Date()
+        var day = dd.getDate() - 1 - dayCount
+
+        console.log(this.state.sum)
         return (
             <Entity >
                 <Entity primitive="a-plane"
@@ -275,7 +273,7 @@ class Lamp extends React.Component {
                     {/* Graph */}
                     <Entity primitive="a-plane"
                         position={{ x: -0.137, y: -1.152, z: 1.153 }}
-                        rotation="-50 0 0"
+                        rotation="-50 0 -90"
                         height="1.5"
                         width="3"
                         color="black"
@@ -283,117 +281,130 @@ class Lamp extends React.Component {
                             click: this.brightToggle.bind(this)
                         }}>
                         {/* day chart */}
+                        {/* 1 */}
                         <Entity primitive="a-box"
-                            position={{ x: -1.2, y: -0.3, z: 0.153 }}
-                            height={1 }
+                            position={{ x: -1.2, y: 0, z: 0.153 }}
+                            height={0.5 + sum[day - 6] / 100}
                             width="0.25"
                             depth="0.3"
                             color="white"
                         >
                             <Entity text={{
-                                value: 'Mon',
+                                value: Math.round(sum[day - 6]),
                                 color: 'black',
                                 width: 4,
                                 align: 'center'
 
                             }}
                                 rotation='0 0 90'
-                                position="0 0 0.3" />
+                                position='0 0 0.22' />
                         </Entity>
+                        {/* 2 */}
                         <Entity primitive="a-box"
                             position={{ x: -0.8, y: 0, z: 0.153 }}
-                            height="1"
+                            height={0.5 + sum[day - 5] / 100}
                             width="0.25"
                             depth="0.3"
                             color="white"
                         >
                             <Entity text={{
-                                value: 'Mon',
+                                value: Math.round(sum[day - 5]),
                                 color: 'black',
                                 width: 4,
                                 align: 'center'
 
                             }}
+                                position='0 0 0.22'
                                 rotation='0 0 90' />
                         </Entity>
+                        {/* 3 */}
                         <Entity primitive="a-box"
                             position={{ x: -0.4, y: 0, z: 0.153 }}
-                            height="1"
+                            height={0.5 + sum[day - 4] / 100}
                             width="0.25"
                             depth="0.3"
                             color="white"
                         >
                             <Entity text={{
-                                value: 'Mon',
+                                value: Math.round(sum[day - 4]),
                                 color: 'black',
                                 width: 4,
                                 align: 'center'
 
                             }}
+                                position='0 0 0.22'
                                 rotation='0 0 90' />
                         </Entity>
+                        {/* 4 */}
                         <Entity primitive="a-box"
                             position={{ x: 0, y: 0, z: 0.153 }}
-                            height="1"
+                            height={0.5 + sum[day - 3] / 100}
                             width="0.25"
                             depth="0.3"
                             color="white"
                         >
                             <Entity text={{
-                                value: 'Mon',
+                                value: Math.round(sum[day - 3]),
                                 color: 'black',
                                 width: 4,
                                 align: 'center'
 
                             }}
+                                position='0 0 0.22'
                                 rotation='0 0 90' />
                         </Entity>
+                        {/* 5 */}
                         <Entity primitive="a-box"
                             position={{ x: 0.4, y: 0, z: 0.153 }}
-                            height="1"
+                            height={0.5 + sum[day - 2] / 100}
                             width="0.25"
                             depth="0.3"
                             color="white"
                         >
                             <Entity text={{
-                                value: 'Mon',
+                                value: Math.round(sum[day - 2]),
                                 color: 'black',
                                 width: 4,
                                 align: 'center'
 
                             }}
+                                position='0 0 0.22'
                                 rotation='0 0 90' />
                         </Entity>
+                        {/* 6 */}
                         <Entity primitive="a-box"
                             position={{ x: 0.8, y: 0, z: 0.153 }}
-                            height="1"
+                            height={0.5 + sum[day - 1] / 100}
                             width="0.25"
                             depth="0.3"
                             color="white"
                         >
                             <Entity text={{
-                                value: 'Mon',
+                                value: Math.round(sum[day - 1]),
                                 color: 'black',
                                 width: 4,
                                 align: 'center'
 
                             }}
+                                position='0 0 0.22'
                                 rotation='0 0 90' />
                         </Entity>
+                        {/* 7 */}
                         <Entity primitive="a-box"
                             position={{ x: 1.2, y: 0, z: 0.153 }}
-                            height="1"
+                            height={0.5 + sum[day] / 100}
                             width="0.25"
                             depth="0.3"
                             color="white"
                         >
                             <Entity text={{
-                                value: 'Mon',
+                                value: Math.round(sum[day]),
                                 color: 'black',
                                 width: 4,
                                 align: 'center'
 
                             }}
+                                position='0 0 0.22'
                                 rotation='0 0 90' />
                         </Entity>
 

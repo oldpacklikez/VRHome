@@ -1,125 +1,2441 @@
-[
-    {
-        "cmd": {
-            "control_type": "toggle",
-            "description": "Turn on or off {name}",
-            "name": "set_On_Off",
-            "parameters": [
-                {
-                    "name": "setTo",
-                    "type": "integer"
-                }
-            ],
-            "voice_commands": [
-                {
-                    "cmd": "smarthome.device.switch.on",
-                    "response": "'Turning on {name}'",
-                    "response_nochange": "'{name} is already on'",
-                    "value": "1"
-                },
-                {
-                    "cmd": "smarthome.device.switch.off",
-                    "response": "'Turning off {name}'",
-                    "response_nochange": "'{name} is already off'",
-                    "value": "0"
-                }
-            ]
-        },
-        "max_value": 1,
-        "min_value": 0,
-        "name": "status",
-        "value": 1,
-        "value_step": 1
+{
+    "meta": {
+        "limit": 2000,
+        "next": null,
+        "offset": 0,
+        "previous": null,
+        "total_count": 270
     },
-    {
-        "cmd": {
-            "control_type": "slider",
-            "name": "set_volume",
-            "parameters": [
-                {
-                    "name": "setTo",
-                    "type": "integer"
-                }
-            ],
-            "voice_commands": [
-                {
-                    "cmd": "smarthome.device.volume.set",
-                    "response": "\"Setting {name}'s volume to {value}\"",
-                    "response_nochange": "\"{name}'s volume is already {value}\"",
-                    "value": "max(0, min(100, int(obj[\"result\"][\"contexts\"][0][\"parameters\"][\"final-value\"])))"
-                },
-                {
-                    "cmd": "smarthome.device.volume.up",
-                    "response": "\"Setting {name}'s volume to {value}\"",
-                    "response_nochange": "\"{name}'s volume is already {value}\"",
-                    "value": "min(100, value['volume'] + int(obj['result']['contexts'][0]['parameters']['change-value'])) if obj['result']['contexts'][0]['parameters']['change-value'] else min(100, value['volume'] + 10)"
-                },
-                {
-                    "cmd": "smarthome.device.volume.down",
-                    "response": "\"Setting {name}'s volume to {value}\"",
-                    "response_nochange": "\"{name}'s volume is already {value}\"",
-                    "value": "max(0, value['volume'] - int(obj['result']['contexts'][0]['parameters']['change-value'])) if obj['result']['contexts'][0]['parameters']['change-value'] else max(0, value['volume'] - 10)"
-                },
-                {
-                    "cmd": "smarthome.device.volume.up.implicit",
-                    "response": "\"Setting {name}'s volume to {value}\"",
-                    "response_nochange": "\"{name}'s volume is already {value}\"",
-                    "value": "min(100, value[\"volume\"] + 10)"
-                },
-                {
-                    "cmd": "smarthome.device.volume.down.implicit",
-                    "response": "\"Setting {name}'s volume to {value}\"",
-                    "response_nochange": "\"{name}'s volume is already {value}\"",
-                    "value": "max(0, value[\"volume\"] - 10)"
-                }
-            ]
+    "objects": [
+        {
+            "PF": 87.28,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-15T20:45:00",
+            "current": 0.01,
+            "kWh": 0.92,
+            "volt": 227.31
         },
-        "max_value": 100,
-        "min_value": 0,
-        "name": "volume",
-        "value": 51,
-        "value_step": 1
-    },
-    {
-        "cmd": {
-            "control_type": "step",
-            "name": "set_channel",
-            "parameters": [
-                {
-                    "name": "setTo",
-                    "type": "integer"
-                }
-            ],
-            "voice_commands": [
-                {
-                    "cmd": "smarthome.device.channel.set",
-                    "response": "\"Setting {name}'s channel to {value}\"",
-                    "response_nochange": "\"{name}'s channel is already {value}\"",
-                    "value": "max(1, min(6, int(obj[\"result\"][\"contexts\"][0][\"parameters\"][\"final-value\"])))"
-                },
-                {
-                    "cmd": "smarthome.device.channel.up",
-                    "response": "\"Setting {name}'s channel to {value}\"",
-                    "response_nochange": "\"{name}'s channel is already {value}\"",
-                    "value": "min(6, value['channel'] + 1)"
-                },
-                {
-                    "cmd": "smarthome.device.channel.down",
-                    "response": "\"Setting {name}'s channel to {value}\"",
-                    "response_nochange": "\"{name}'s channel is already {value}\"",
-                    "value": "max(1, value['channel'] - 1)"
-                }
-            ]
+        {
+            "PF": 99.94,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-15T20:45:00",
+            "current": 0.64,
+            "kWh": 1.75,
+            "volt": 220.47
         },
-        "max_value": 6,
-        "min_value": 1,
-        "name": "channel",
-        "value": 6,
-        "value_step": 1
-    },
-    {
-        "cmd": null,
-        "name": "current_consumption",
-        "value": 0.003
-    }
-]
+        {
+            "PF": 85.21000000000001,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-15T20:45:00",
+            "current": 0.98,
+            "kWh": 1.79,
+            "volt": 225.84
+        },
+        {
+            "PF": 85.53,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-15T20:45:00",
+            "current": 0.9,
+            "kWh": 1.46,
+            "volt": 226.77
+        },
+        {
+            "PF": 96.93,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-15T20:45:00",
+            "current": 0.38,
+            "kWh": 1.44,
+            "volt": 218.84
+        },
+        {
+            "PF": 87.83,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-15T21:00:00",
+            "current": 0.08,
+            "kWh": 0.63,
+            "volt": 228.36
+        },
+        {
+            "PF": 98.31,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-15T21:00:00",
+            "current": 0.14,
+            "kWh": 1.09,
+            "volt": 222.12
+        },
+        {
+            "PF": 87.22,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-15T21:00:00",
+            "current": 0.54,
+            "kWh": 1.11,
+            "volt": 223.16
+        },
+        {
+            "PF": 89.55,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-15T21:00:00",
+            "current": 0.91,
+            "kWh": 1.6400000000000001,
+            "volt": 220.23000000000002
+        },
+        {
+            "PF": 99.25,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-15T21:00:00",
+            "current": 0.6,
+            "kWh": 1.62,
+            "volt": 216.4
+        },
+        {
+            "PF": 83.45,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-15T21:15:00",
+            "current": 0.59,
+            "kWh": 1.19,
+            "volt": 225.59
+        },
+        {
+            "PF": 91.8,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-15T21:15:00",
+            "current": 0.9400000000000001,
+            "kWh": 1.74,
+            "volt": 217.92000000000002
+        },
+        {
+            "PF": 87.61,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-15T21:15:00",
+            "current": 0.75,
+            "kWh": 1.09,
+            "volt": 225.5
+        },
+        {
+            "PF": 92.05,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-15T21:15:00",
+            "current": 0.79,
+            "kWh": 1.01,
+            "volt": 227.08
+        },
+        {
+            "PF": 92.41,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-15T21:15:00",
+            "current": 0.63,
+            "kWh": 2.0,
+            "volt": 227.59
+        },
+        {
+            "PF": 86.78,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-15T21:30:00",
+            "current": 0.5700000000000001,
+            "kWh": 1.81,
+            "volt": 216.62
+        },
+        {
+            "PF": 83.08,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-15T21:30:00",
+            "current": 1.0,
+            "kWh": 1.58,
+            "volt": 224.19
+        },
+        {
+            "PF": 96.67,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-15T21:30:00",
+            "current": 0.38,
+            "kWh": 0.53,
+            "volt": 225.32
+        },
+        {
+            "PF": 80.19,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-15T21:30:00",
+            "current": 0.89,
+            "kWh": 1.04,
+            "volt": 225.94
+        },
+        {
+            "PF": 87.41,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-15T21:30:00",
+            "current": 0.86,
+            "kWh": 1.5,
+            "volt": 226.32
+        },
+        {
+            "PF": 84.46000000000001,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-15T21:45:00",
+            "current": 0.86,
+            "kWh": 1.71,
+            "volt": 223.67000000000002
+        },
+        {
+            "PF": 99.37,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-15T21:45:00",
+            "current": 0.08,
+            "kWh": 1.72,
+            "volt": 225.47
+        },
+        {
+            "PF": 82.38,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-15T21:45:00",
+            "current": 0.02,
+            "kWh": 0.58,
+            "volt": 222.69
+        },
+        {
+            "PF": 89.99,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-15T21:45:00",
+            "current": 0.23,
+            "kWh": 1.27,
+            "volt": 222.53
+        },
+        {
+            "PF": 93.11,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-15T21:45:00",
+            "current": 0.87,
+            "kWh": 1.95,
+            "volt": 226.91
+        },
+        {
+            "PF": 90.81,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-15T22:00:00",
+            "current": 0.88,
+            "kWh": 1.76,
+            "volt": 220.29
+        },
+        {
+            "PF": 92.96000000000001,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-15T22:00:00",
+            "current": 0.01,
+            "kWh": 1.55,
+            "volt": 218.46
+        },
+        {
+            "PF": 85.60000000000001,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-15T22:00:00",
+            "current": 0.13,
+            "kWh": 1.45,
+            "volt": 216.69
+        },
+        {
+            "PF": 82.61,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-15T22:00:00",
+            "current": 0.76,
+            "kWh": 0.73,
+            "volt": 216.35
+        },
+        {
+            "PF": 84.05,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-15T22:00:00",
+            "current": 0.93,
+            "kWh": 1.36,
+            "volt": 220.51
+        },
+        {
+            "PF": 99.61,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-15T22:15:00",
+            "current": 0.01,
+            "kWh": 1.21,
+            "volt": 222.92000000000002
+        },
+        {
+            "PF": 82.03,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-15T22:15:00",
+            "current": 1.0,
+            "kWh": 1.84,
+            "volt": 223.88
+        },
+        {
+            "PF": 83.9,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-15T22:15:00",
+            "current": 0.9400000000000001,
+            "kWh": 1.09,
+            "volt": 227.65
+        },
+        {
+            "PF": 90.24,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-15T22:15:00",
+            "current": 0.55,
+            "kWh": 1.12,
+            "volt": 217.54
+        },
+        {
+            "PF": 95.71000000000001,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-15T22:15:00",
+            "current": 0.91,
+            "kWh": 1.3,
+            "volt": 221.95000000000002
+        },
+        {
+            "PF": 92.60000000000001,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-15T22:30:00",
+            "current": 0.79,
+            "kWh": 1.09,
+            "volt": 229.94
+        },
+        {
+            "PF": 85.83,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-15T22:30:00",
+            "current": 0.93,
+            "kWh": 0.76,
+            "volt": 216.13
+        },
+        {
+            "PF": 81.96000000000001,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-15T22:30:00",
+            "current": 0.24,
+            "kWh": 0.5700000000000001,
+            "volt": 227.13
+        },
+        {
+            "PF": 83.60000000000001,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-15T22:30:00",
+            "current": 0.59,
+            "kWh": 0.75,
+            "volt": 224.74
+        },
+        {
+            "PF": 81.47,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-15T22:30:00",
+            "current": 0.13,
+            "kWh": 1.18,
+            "volt": 221.38
+        },
+        {
+            "PF": 94.62,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-15T22:45:00",
+            "current": 0.16,
+            "kWh": 0.99,
+            "volt": 229.92000000000002
+        },
+        {
+            "PF": 99.34,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-15T22:45:00",
+            "current": 0.45,
+            "kWh": 0.5,
+            "volt": 227.48000000000002
+        },
+        {
+            "PF": 96.71000000000001,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-15T22:45:00",
+            "current": 0.58,
+            "kWh": 1.47,
+            "volt": 219.62
+        },
+        {
+            "PF": 85.4,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-15T22:45:00",
+            "current": 0.02,
+            "kWh": 0.7000000000000001,
+            "volt": 227.14000000000001
+        },
+        {
+            "PF": 96.16,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-15T22:45:00",
+            "current": 0.8200000000000001,
+            "kWh": 0.58,
+            "volt": 228.89000000000001
+        },
+        {
+            "PF": 89.60000000000001,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-15T23:00:00",
+            "current": 0.14,
+            "kWh": 1.35,
+            "volt": 225.28
+        },
+        {
+            "PF": 83.14,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-15T23:00:00",
+            "current": 0.27,
+            "kWh": 1.71,
+            "volt": 215.38
+        },
+        {
+            "PF": 96.06,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-15T23:00:00",
+            "current": 0.03,
+            "kWh": 0.59,
+            "volt": 219.33
+        },
+        {
+            "PF": 87.18,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-15T23:00:00",
+            "current": 0.64,
+            "kWh": 1.31,
+            "volt": 216.02
+        },
+        {
+            "PF": 95.22,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-15T23:00:00",
+            "current": 0.39,
+            "kWh": 0.71,
+            "volt": 229.47
+        },
+        {
+            "PF": 86.55,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-15T23:15:00",
+            "current": 0.33,
+            "kWh": 1.73,
+            "volt": 215.54
+        },
+        {
+            "PF": 92.12,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-15T23:15:00",
+            "current": 0.65,
+            "kWh": 0.77,
+            "volt": 217.07
+        },
+        {
+            "PF": 95.45,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-15T23:15:00",
+            "current": 0.6900000000000001,
+            "kWh": 0.89,
+            "volt": 222.9
+        },
+        {
+            "PF": 96.42,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-15T23:15:00",
+            "current": 0.12,
+            "kWh": 1.41,
+            "volt": 218.89000000000001
+        },
+        {
+            "PF": 95.3,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-15T23:15:00",
+            "current": 0.92,
+            "kWh": 0.87,
+            "volt": 226.37
+        },
+        {
+            "PF": 86.02,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-15T23:30:00",
+            "current": 0.64,
+            "kWh": 1.24,
+            "volt": 215.86
+        },
+        {
+            "PF": 86.27,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-15T23:30:00",
+            "current": 0.22,
+            "kWh": 0.87,
+            "volt": 215.28
+        },
+        {
+            "PF": 97.09,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-15T23:30:00",
+            "current": 0.37,
+            "kWh": 0.9,
+            "volt": 225.14000000000001
+        },
+        {
+            "PF": 92.8,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-15T23:30:00",
+            "current": 0.45,
+            "kWh": 1.95,
+            "volt": 218.94
+        },
+        {
+            "PF": 87.73,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-15T23:30:00",
+            "current": 0.36,
+            "kWh": 1.71,
+            "volt": 223.74
+        },
+        {
+            "PF": 89.94,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-15T23:45:00",
+            "current": 0.7000000000000001,
+            "kWh": 1.29,
+            "volt": 218.42000000000002
+        },
+        {
+            "PF": 94.07000000000001,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-15T23:45:00",
+            "current": 0.8200000000000001,
+            "kWh": 1.32,
+            "volt": 226.73000000000002
+        },
+        {
+            "PF": 87.79,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-15T23:45:00",
+            "current": 0.8300000000000001,
+            "kWh": 1.97,
+            "volt": 218.9
+        },
+        {
+            "PF": 87.35000000000001,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-15T23:45:00",
+            "current": 0.41000000000000003,
+            "kWh": 1.18,
+            "volt": 221.51
+        },
+        {
+            "PF": 90.66,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-15T23:45:00",
+            "current": 1.0,
+            "kWh": 0.75,
+            "volt": 226.67000000000002
+        },
+        {
+            "PF": 83.46000000000001,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T00:00:00",
+            "current": 0.92,
+            "kWh": 1.55,
+            "volt": 219.47
+        },
+        {
+            "PF": 98.12,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T00:00:00",
+            "current": 0.25,
+            "kWh": 1.61,
+            "volt": 225.92000000000002
+        },
+        {
+            "PF": 86.61,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T00:00:00",
+            "current": 0.98,
+            "kWh": 1.37,
+            "volt": 224.24
+        },
+        {
+            "PF": 96.18,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T00:00:00",
+            "current": 0.65,
+            "kWh": 1.28,
+            "volt": 224.45000000000002
+        },
+        {
+            "PF": 96.27,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T00:00:00",
+            "current": 0.0,
+            "kWh": 0.96,
+            "volt": 218.48000000000002
+        },
+        {
+            "PF": 90.61,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T00:15:00",
+            "current": 0.81,
+            "kWh": 1.02,
+            "volt": 227.47
+        },
+        {
+            "PF": 91.04,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T00:15:00",
+            "current": 0.39,
+            "kWh": 1.99,
+            "volt": 216.36
+        },
+        {
+            "PF": 80.73,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T00:15:00",
+            "current": 0.9500000000000001,
+            "kWh": 0.59,
+            "volt": 219.39000000000001
+        },
+        {
+            "PF": 87.06,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T00:15:00",
+            "current": 0.32,
+            "kWh": 0.91,
+            "volt": 218.51
+        },
+        {
+            "PF": 87.61,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T00:15:00",
+            "current": 0.27,
+            "kWh": 0.53,
+            "volt": 228.52
+        },
+        {
+            "PF": 91.66,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T00:30:00",
+            "current": 0.74,
+            "kWh": 1.75,
+            "volt": 228.76
+        },
+        {
+            "PF": 86.93,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T00:30:00",
+            "current": 0.75,
+            "kWh": 1.99,
+            "volt": 221.37
+        },
+        {
+            "PF": 90.11,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T00:30:00",
+            "current": 0.09,
+            "kWh": 0.88,
+            "volt": 218.12
+        },
+        {
+            "PF": 83.69,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T00:30:00",
+            "current": 0.96,
+            "kWh": 1.32,
+            "volt": 215.27
+        },
+        {
+            "PF": 83.77,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T00:30:00",
+            "current": 0.62,
+            "kWh": 1.57,
+            "volt": 219.87
+        },
+        {
+            "PF": 97.55,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T00:45:00",
+            "current": 0.87,
+            "kWh": 0.84,
+            "volt": 221.44
+        },
+        {
+            "PF": 87.77,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T00:45:00",
+            "current": 0.01,
+            "kWh": 1.02,
+            "volt": 226.1
+        },
+        {
+            "PF": 98.72,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T00:45:00",
+            "current": 0.56,
+            "kWh": 1.6,
+            "volt": 218.41
+        },
+        {
+            "PF": 90.35000000000001,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T00:45:00",
+            "current": 0.74,
+            "kWh": 1.87,
+            "volt": 218.13
+        },
+        {
+            "PF": 97.64,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T00:45:00",
+            "current": 0.8200000000000001,
+            "kWh": 1.79,
+            "volt": 224.81
+        },
+        {
+            "PF": 86.43,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T01:00:00",
+            "current": 0.47000000000000003,
+            "kWh": 1.1500000000000001,
+            "volt": 224.07
+        },
+        {
+            "PF": 95.16,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T01:00:00",
+            "current": 0.78,
+            "kWh": 1.6300000000000001,
+            "volt": 221.45000000000002
+        },
+        {
+            "PF": 96.67,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T01:00:00",
+            "current": 0.19,
+            "kWh": 1.37,
+            "volt": 218.21
+        },
+        {
+            "PF": 92.52,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T01:00:00",
+            "current": 0.7000000000000001,
+            "kWh": 1.37,
+            "volt": 222.61
+        },
+        {
+            "PF": 94.76,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T01:00:00",
+            "current": 0.53,
+            "kWh": 1.48,
+            "volt": 223.86
+        },
+        {
+            "PF": 91.32000000000001,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T01:15:00",
+            "current": 0.43,
+            "kWh": 0.58,
+            "volt": 215.20000000000002
+        },
+        {
+            "PF": 87.86,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T01:15:00",
+            "current": 0.86,
+            "kWh": 1.36,
+            "volt": 221.93
+        },
+        {
+            "PF": 84.89,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T01:15:00",
+            "current": 0.33,
+            "kWh": 1.67,
+            "volt": 222.59
+        },
+        {
+            "PF": 92.2,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T01:15:00",
+            "current": 0.87,
+            "kWh": 1.45,
+            "volt": 221.5
+        },
+        {
+            "PF": 80.74,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T01:15:00",
+            "current": 0.49,
+            "kWh": 1.55,
+            "volt": 224.71
+        },
+        {
+            "PF": 94.60000000000001,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T01:30:00",
+            "current": 0.16,
+            "kWh": 1.77,
+            "volt": 215.83
+        },
+        {
+            "PF": 82.47,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T01:30:00",
+            "current": 0.32,
+            "kWh": 1.79,
+            "volt": 220.98000000000002
+        },
+        {
+            "PF": 99.57000000000001,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T01:30:00",
+            "current": 0.51,
+            "kWh": 1.8800000000000001,
+            "volt": 218.64000000000001
+        },
+        {
+            "PF": 91.2,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T01:30:00",
+            "current": 0.29,
+            "kWh": 0.78,
+            "volt": 222.65
+        },
+        {
+            "PF": 85.28,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T01:30:00",
+            "current": 0.17,
+            "kWh": 1.94,
+            "volt": 220.70000000000002
+        },
+        {
+            "PF": 83.14,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T01:45:00",
+            "current": 0.67,
+            "kWh": 0.58,
+            "volt": 224.16
+        },
+        {
+            "PF": 82.09,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T01:45:00",
+            "current": 0.56,
+            "kWh": 1.1500000000000001,
+            "volt": 228.78
+        },
+        {
+            "PF": 92.31,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T01:45:00",
+            "current": 0.6900000000000001,
+            "kWh": 0.67,
+            "volt": 221.27
+        },
+        {
+            "PF": 87.96000000000001,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T01:45:00",
+            "current": 0.66,
+            "kWh": 1.12,
+            "volt": 221.1
+        },
+        {
+            "PF": 96.7,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T01:45:00",
+            "current": 0.29,
+            "kWh": 1.45,
+            "volt": 222.08
+        },
+        {
+            "PF": 85.53,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T02:00:00",
+            "current": 0.45,
+            "kWh": 1.1500000000000001,
+            "volt": 225.81
+        },
+        {
+            "PF": 84.19,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T02:00:00",
+            "current": 0.49,
+            "kWh": 1.09,
+            "volt": 228.71
+        },
+        {
+            "PF": 89.9,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T02:00:00",
+            "current": 0.68,
+            "kWh": 0.9500000000000001,
+            "volt": 218.29
+        },
+        {
+            "PF": 96.01,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T02:00:00",
+            "current": 0.97,
+            "kWh": 1.04,
+            "volt": 225.19
+        },
+        {
+            "PF": 86.53,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T02:00:00",
+            "current": 0.71,
+            "kWh": 1.28,
+            "volt": 216.93
+        },
+        {
+            "PF": 91.34,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T02:15:00",
+            "current": 0.5,
+            "kWh": 0.55,
+            "volt": 227.97
+        },
+        {
+            "PF": 95.59,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T02:15:00",
+            "current": 0.13,
+            "kWh": 0.68,
+            "volt": 229.09
+        },
+        {
+            "PF": 99.52,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T02:15:00",
+            "current": 0.51,
+            "kWh": 1.07,
+            "volt": 227.88
+        },
+        {
+            "PF": 95.68,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T02:15:00",
+            "current": 0.81,
+            "kWh": 0.59,
+            "volt": 217.32
+        },
+        {
+            "PF": 96.86,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T02:15:00",
+            "current": 0.03,
+            "kWh": 1.08,
+            "volt": 223.88
+        },
+        {
+            "PF": 93.58,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T02:30:00",
+            "current": 0.64,
+            "kWh": 1.9100000000000001,
+            "volt": 225.55
+        },
+        {
+            "PF": 86.88,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T02:30:00",
+            "current": 0.73,
+            "kWh": 0.65,
+            "volt": 218.62
+        },
+        {
+            "PF": 84.92,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T02:30:00",
+            "current": 0.44,
+            "kWh": 0.8200000000000001,
+            "volt": 217.0
+        },
+        {
+            "PF": 98.37,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T02:30:00",
+            "current": 0.26,
+            "kWh": 0.85,
+            "volt": 220.70000000000002
+        },
+        {
+            "PF": 82.09,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T02:30:00",
+            "current": 0.9500000000000001,
+            "kWh": 0.76,
+            "volt": 224.92000000000002
+        },
+        {
+            "PF": 94.32000000000001,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T02:45:00",
+            "current": 0.9400000000000001,
+            "kWh": 1.08,
+            "volt": 223.42000000000002
+        },
+        {
+            "PF": 91.97,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T02:45:00",
+            "current": 0.46,
+            "kWh": 1.79,
+            "volt": 219.34
+        },
+        {
+            "PF": 93.4,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T02:45:00",
+            "current": 0.81,
+            "kWh": 0.86,
+            "volt": 216.01
+        },
+        {
+            "PF": 92.84,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T02:45:00",
+            "current": 0.88,
+            "kWh": 1.08,
+            "volt": 223.79
+        },
+        {
+            "PF": 93.83,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T02:45:00",
+            "current": 0.38,
+            "kWh": 1.3900000000000001,
+            "volt": 215.70000000000002
+        },
+        {
+            "PF": 95.64,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T03:00:00",
+            "current": 0.24,
+            "kWh": 1.77,
+            "volt": 229.72
+        },
+        {
+            "PF": 82.18,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T03:00:00",
+            "current": 0.93,
+            "kWh": 0.52,
+            "volt": 217.05
+        },
+        {
+            "PF": 85.51,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T03:00:00",
+            "current": 0.81,
+            "kWh": 1.45,
+            "volt": 226.02
+        },
+        {
+            "PF": 86.59,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T03:00:00",
+            "current": 0.35000000000000003,
+            "kWh": 1.0,
+            "volt": 227.22
+        },
+        {
+            "PF": 84.21000000000001,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T03:00:00",
+            "current": 0.72,
+            "kWh": 1.96,
+            "volt": 217.41
+        },
+        {
+            "PF": 80.88,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T03:15:00",
+            "current": 0.68,
+            "kWh": 1.51,
+            "volt": 215.53
+        },
+        {
+            "PF": 83.92,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T03:15:00",
+            "current": 0.41000000000000003,
+            "kWh": 1.45,
+            "volt": 222.64000000000001
+        },
+        {
+            "PF": 90.89,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T03:15:00",
+            "current": 0.63,
+            "kWh": 1.56,
+            "volt": 223.83
+        },
+        {
+            "PF": 94.03,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T03:15:00",
+            "current": 0.75,
+            "kWh": 1.35,
+            "volt": 229.87
+        },
+        {
+            "PF": 92.8,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T03:15:00",
+            "current": 0.75,
+            "kWh": 1.3800000000000001,
+            "volt": 223.08
+        },
+        {
+            "PF": 95.25,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T03:30:00",
+            "current": 0.59,
+            "kWh": 1.87,
+            "volt": 219.47
+        },
+        {
+            "PF": 99.93,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T03:30:00",
+            "current": 0.44,
+            "kWh": 1.34,
+            "volt": 224.20000000000002
+        },
+        {
+            "PF": 84.01,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T03:30:00",
+            "current": 0.68,
+            "kWh": 1.03,
+            "volt": 229.1
+        },
+        {
+            "PF": 86.66,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T03:30:00",
+            "current": 0.9,
+            "kWh": 1.29,
+            "volt": 216.45000000000002
+        },
+        {
+            "PF": 97.54,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T03:30:00",
+            "current": 0.99,
+            "kWh": 0.6,
+            "volt": 217.24
+        },
+        {
+            "PF": 83.24,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T03:45:00",
+            "current": 0.78,
+            "kWh": 1.58,
+            "volt": 220.82
+        },
+        {
+            "PF": 86.14,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T03:45:00",
+            "current": 0.53,
+            "kWh": 1.6300000000000001,
+            "volt": 216.69
+        },
+        {
+            "PF": 85.28,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T03:45:00",
+            "current": 0.76,
+            "kWh": 0.87,
+            "volt": 220.49
+        },
+        {
+            "PF": 91.31,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T03:45:00",
+            "current": 0.85,
+            "kWh": 1.46,
+            "volt": 228.87
+        },
+        {
+            "PF": 80.53,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T03:45:00",
+            "current": 0.06,
+            "kWh": 1.67,
+            "volt": 219.91
+        },
+        {
+            "PF": 88.51,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T04:00:00",
+            "current": 0.62,
+            "kWh": 1.78,
+            "volt": 227.86
+        },
+        {
+            "PF": 85.58,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T04:00:00",
+            "current": 0.9400000000000001,
+            "kWh": 1.4000000000000001,
+            "volt": 227.55
+        },
+        {
+            "PF": 84.35000000000001,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T04:00:00",
+            "current": 0.59,
+            "kWh": 0.81,
+            "volt": 220.49
+        },
+        {
+            "PF": 83.83,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T04:00:00",
+            "current": 0.81,
+            "kWh": 0.8,
+            "volt": 219.56
+        },
+        {
+            "PF": 84.81,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T04:00:00",
+            "current": 0.3,
+            "kWh": 0.9,
+            "volt": 215.73000000000002
+        },
+        {
+            "PF": 91.3,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T04:15:00",
+            "current": 0.84,
+            "kWh": 0.9400000000000001,
+            "volt": 216.67000000000002
+        },
+        {
+            "PF": 89.06,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T04:15:00",
+            "current": 0.35000000000000003,
+            "kWh": 0.51,
+            "volt": 219.61
+        },
+        {
+            "PF": 84.13,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T04:15:00",
+            "current": 0.99,
+            "kWh": 1.36,
+            "volt": 217.92000000000002
+        },
+        {
+            "PF": 96.22,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T04:15:00",
+            "current": 0.05,
+            "kWh": 1.7,
+            "volt": 228.49
+        },
+        {
+            "PF": 83.14,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T04:15:00",
+            "current": 0.46,
+            "kWh": 1.45,
+            "volt": 226.98000000000002
+        },
+        {
+            "PF": 82.75,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T04:30:00",
+            "current": 0.13,
+            "kWh": 1.84,
+            "volt": 218.89000000000001
+        },
+        {
+            "PF": 97.06,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T04:30:00",
+            "current": 0.87,
+            "kWh": 0.8300000000000001,
+            "volt": 222.54
+        },
+        {
+            "PF": 81.92,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T04:30:00",
+            "current": 0.01,
+            "kWh": 1.71,
+            "volt": 218.92000000000002
+        },
+        {
+            "PF": 89.73,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T04:30:00",
+            "current": 0.34,
+            "kWh": 1.05,
+            "volt": 222.33
+        },
+        {
+            "PF": 85.36,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T04:30:00",
+            "current": 0.18,
+            "kWh": 1.58,
+            "volt": 229.64000000000001
+        },
+        {
+            "PF": 89.87,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T04:45:00",
+            "current": 0.74,
+            "kWh": 1.18,
+            "volt": 215.45000000000002
+        },
+        {
+            "PF": 98.33,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T04:45:00",
+            "current": 0.61,
+            "kWh": 1.72,
+            "volt": 219.29
+        },
+        {
+            "PF": 85.28,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T04:45:00",
+            "current": 0.46,
+            "kWh": 1.0,
+            "volt": 223.19
+        },
+        {
+            "PF": 86.87,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T04:45:00",
+            "current": 0.9500000000000001,
+            "kWh": 1.68,
+            "volt": 220.04
+        },
+        {
+            "PF": 85.7,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T04:45:00",
+            "current": 0.61,
+            "kWh": 0.86,
+            "volt": 222.09
+        },
+        {
+            "PF": 96.62,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T05:00:00",
+            "current": 0.53,
+            "kWh": 1.22,
+            "volt": 217.4
+        },
+        {
+            "PF": 90.04,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T05:00:00",
+            "current": 0.84,
+            "kWh": 0.7000000000000001,
+            "volt": 216.09
+        },
+        {
+            "PF": 83.48,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T05:00:00",
+            "current": 0.73,
+            "kWh": 1.72,
+            "volt": 224.74
+        },
+        {
+            "PF": 99.77,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T05:00:00",
+            "current": 0.24,
+            "kWh": 1.96,
+            "volt": 226.68
+        },
+        {
+            "PF": 87.18,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T05:00:00",
+            "current": 0.44,
+            "kWh": 1.16,
+            "volt": 224.04
+        },
+        {
+            "PF": 93.0,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T05:15:00",
+            "current": 0.34,
+            "kWh": 0.63,
+            "volt": 216.6
+        },
+        {
+            "PF": 82.48,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T05:15:00",
+            "current": 0.78,
+            "kWh": 1.6300000000000001,
+            "volt": 225.69
+        },
+        {
+            "PF": 99.19,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T05:15:00",
+            "current": 0.5700000000000001,
+            "kWh": 0.75,
+            "volt": 225.83
+        },
+        {
+            "PF": 93.95,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T05:15:00",
+            "current": 0.44,
+            "kWh": 0.6900000000000001,
+            "volt": 220.32
+        },
+        {
+            "PF": 93.48,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T05:15:00",
+            "current": 0.34,
+            "kWh": 0.51,
+            "volt": 218.34
+        },
+        {
+            "PF": 97.88,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T05:30:00",
+            "current": 0.22,
+            "kWh": 1.74,
+            "volt": 223.67000000000002
+        },
+        {
+            "PF": 80.83,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T05:30:00",
+            "current": 0.42,
+            "kWh": 1.55,
+            "volt": 219.97
+        },
+        {
+            "PF": 87.67,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T05:30:00",
+            "current": 0.09,
+            "kWh": 1.23,
+            "volt": 228.05
+        },
+        {
+            "PF": 88.37,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T05:30:00",
+            "current": 0.7000000000000001,
+            "kWh": 0.91,
+            "volt": 222.5
+        },
+        {
+            "PF": 91.68,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T05:30:00",
+            "current": 0.38,
+            "kWh": 1.9100000000000001,
+            "volt": 218.91
+        },
+        {
+            "PF": 98.23,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T05:45:00",
+            "current": 0.37,
+            "kWh": 1.94,
+            "volt": 225.48000000000002
+        },
+        {
+            "PF": 90.95,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T05:45:00",
+            "current": 0.58,
+            "kWh": 1.52,
+            "volt": 215.84
+        },
+        {
+            "PF": 86.83,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T05:45:00",
+            "current": 0.14,
+            "kWh": 1.8800000000000001,
+            "volt": 228.96
+        },
+        {
+            "PF": 95.83,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T05:45:00",
+            "current": 0.15,
+            "kWh": 1.47,
+            "volt": 227.97
+        },
+        {
+            "PF": 88.35000000000001,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T05:45:00",
+            "current": 0.93,
+            "kWh": 0.97,
+            "volt": 224.61
+        },
+        {
+            "PF": 96.78,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T06:00:00",
+            "current": 0.72,
+            "kWh": 1.16,
+            "volt": 220.62
+        },
+        {
+            "PF": 87.42,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T06:00:00",
+            "current": 0.01,
+            "kWh": 1.96,
+            "volt": 229.42000000000002
+        },
+        {
+            "PF": 81.26,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T06:00:00",
+            "current": 0.27,
+            "kWh": 1.55,
+            "volt": 227.07
+        },
+        {
+            "PF": 80.15,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T06:00:00",
+            "current": 0.9500000000000001,
+            "kWh": 1.92,
+            "volt": 221.23000000000002
+        },
+        {
+            "PF": 94.12,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T06:00:00",
+            "current": 0.08,
+            "kWh": 0.5,
+            "volt": 219.78
+        },
+        {
+            "PF": 81.64,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T06:15:00",
+            "current": 0.39,
+            "kWh": 0.75,
+            "volt": 219.04
+        },
+        {
+            "PF": 80.11,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T06:15:00",
+            "current": 0.97,
+            "kWh": 0.96,
+            "volt": 226.39000000000001
+        },
+        {
+            "PF": 98.43,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T06:15:00",
+            "current": 0.99,
+            "kWh": 1.46,
+            "volt": 221.08
+        },
+        {
+            "PF": 87.25,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T06:15:00",
+            "current": 0.16,
+            "kWh": 1.87,
+            "volt": 227.08
+        },
+        {
+            "PF": 88.8,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T06:15:00",
+            "current": 0.21,
+            "kWh": 0.54,
+            "volt": 215.20000000000002
+        },
+        {
+            "PF": 80.96000000000001,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T06:30:00",
+            "current": 0.0,
+            "kWh": 1.45,
+            "volt": 219.64000000000001
+        },
+        {
+            "PF": 84.71000000000001,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T06:30:00",
+            "current": 0.33,
+            "kWh": 0.72,
+            "volt": 226.47
+        },
+        {
+            "PF": 81.79,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T06:30:00",
+            "current": 0.32,
+            "kWh": 0.68,
+            "volt": 220.99
+        },
+        {
+            "PF": 91.05,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T06:30:00",
+            "current": 0.6,
+            "kWh": 0.91,
+            "volt": 218.68
+        },
+        {
+            "PF": 97.42,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T06:30:00",
+            "current": 0.12,
+            "kWh": 1.82,
+            "volt": 228.42000000000002
+        },
+        {
+            "PF": 93.12,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T06:45:00",
+            "current": 0.51,
+            "kWh": 1.41,
+            "volt": 216.52
+        },
+        {
+            "PF": 99.04,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T06:45:00",
+            "current": 0.91,
+            "kWh": 1.0,
+            "volt": 218.70000000000002
+        },
+        {
+            "PF": 93.33,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T06:45:00",
+            "current": 0.08,
+            "kWh": 1.99,
+            "volt": 229.04
+        },
+        {
+            "PF": 91.09,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T06:45:00",
+            "current": 0.63,
+            "kWh": 0.9400000000000001,
+            "volt": 223.64000000000001
+        },
+        {
+            "PF": 90.45,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T06:45:00",
+            "current": 0.75,
+            "kWh": 1.53,
+            "volt": 222.26
+        },
+        {
+            "PF": 95.01,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T07:00:00",
+            "current": 0.48,
+            "kWh": 1.99,
+            "volt": 216.57
+        },
+        {
+            "PF": 87.35000000000001,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T07:00:00",
+            "current": 0.63,
+            "kWh": 1.2,
+            "volt": 229.76
+        },
+        {
+            "PF": 85.62,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T07:00:00",
+            "current": 0.31,
+            "kWh": 1.93,
+            "volt": 217.24
+        },
+        {
+            "PF": 99.81,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T07:00:00",
+            "current": 0.19,
+            "kWh": 1.6500000000000001,
+            "volt": 226.02
+        },
+        {
+            "PF": 84.82000000000001,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T07:00:00",
+            "current": 0.51,
+            "kWh": 1.36,
+            "volt": 217.96
+        },
+        {
+            "PF": 81.15,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T07:15:00",
+            "current": 0.9400000000000001,
+            "kWh": 1.79,
+            "volt": 227.1
+        },
+        {
+            "PF": 83.88,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T07:15:00",
+            "current": 0.09,
+            "kWh": 1.3,
+            "volt": 223.28
+        },
+        {
+            "PF": 85.27,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T07:15:00",
+            "current": 0.85,
+            "kWh": 0.9400000000000001,
+            "volt": 222.8
+        },
+        {
+            "PF": 83.14,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T07:15:00",
+            "current": 0.01,
+            "kWh": 0.59,
+            "volt": 215.99
+        },
+        {
+            "PF": 87.62,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T07:15:00",
+            "current": 0.5700000000000001,
+            "kWh": 1.2,
+            "volt": 224.08
+        },
+        {
+            "PF": 91.07000000000001,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T07:30:00",
+            "current": 0.53,
+            "kWh": 1.9100000000000001,
+            "volt": 218.54
+        },
+        {
+            "PF": 89.99,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T07:30:00",
+            "current": 0.56,
+            "kWh": 1.07,
+            "volt": 221.9
+        },
+        {
+            "PF": 96.27,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T07:30:00",
+            "current": 0.25,
+            "kWh": 1.84,
+            "volt": 219.55
+        },
+        {
+            "PF": 99.96000000000001,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T07:30:00",
+            "current": 0.18,
+            "kWh": 0.66,
+            "volt": 220.98000000000002
+        },
+        {
+            "PF": 96.76,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T07:30:00",
+            "current": 0.33,
+            "kWh": 1.3800000000000001,
+            "volt": 215.64000000000001
+        },
+        {
+            "PF": 84.03,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T07:45:00",
+            "current": 0.92,
+            "kWh": 1.5,
+            "volt": 228.03
+        },
+        {
+            "PF": 87.36,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T07:45:00",
+            "current": 0.05,
+            "kWh": 2.0,
+            "volt": 220.78
+        },
+        {
+            "PF": 90.76,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T07:45:00",
+            "current": 0.01,
+            "kWh": 1.23,
+            "volt": 227.53
+        },
+        {
+            "PF": 84.37,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T07:45:00",
+            "current": 0.28,
+            "kWh": 1.57,
+            "volt": 220.16
+        },
+        {
+            "PF": 90.74,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T07:45:00",
+            "current": 0.34,
+            "kWh": 0.9500000000000001,
+            "volt": 221.42000000000002
+        },
+        {
+            "PF": 92.03,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T08:00:00",
+            "current": 0.68,
+            "kWh": 1.27,
+            "volt": 226.39000000000001
+        },
+        {
+            "PF": 90.07000000000001,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T08:00:00",
+            "current": 0.2,
+            "kWh": 1.43,
+            "volt": 216.22
+        },
+        {
+            "PF": 91.31,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T08:00:00",
+            "current": 0.74,
+            "kWh": 1.99,
+            "volt": 225.11
+        },
+        {
+            "PF": 87.59,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T08:00:00",
+            "current": 0.07,
+            "kWh": 1.56,
+            "volt": 221.61
+        },
+        {
+            "PF": 90.09,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T08:00:00",
+            "current": 0.39,
+            "kWh": 0.85,
+            "volt": 221.19
+        },
+        {
+            "PF": 90.77,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T08:15:00",
+            "current": 0.02,
+            "kWh": 1.93,
+            "volt": 220.91
+        },
+        {
+            "PF": 90.16,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T08:15:00",
+            "current": 0.13,
+            "kWh": 1.3800000000000001,
+            "volt": 220.47
+        },
+        {
+            "PF": 90.03,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T08:15:00",
+            "current": 0.9,
+            "kWh": 0.68,
+            "volt": 228.96
+        },
+        {
+            "PF": 91.73,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T08:15:00",
+            "current": 0.44,
+            "kWh": 1.6400000000000001,
+            "volt": 216.02
+        },
+        {
+            "PF": 83.84,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T08:15:00",
+            "current": 0.43,
+            "kWh": 1.87,
+            "volt": 222.8
+        },
+        {
+            "PF": 87.52,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T08:30:00",
+            "current": 0.56,
+            "kWh": 1.16,
+            "volt": 223.24
+        },
+        {
+            "PF": 84.49,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T08:30:00",
+            "current": 0.77,
+            "kWh": 1.22,
+            "volt": 218.28
+        },
+        {
+            "PF": 85.68,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T08:30:00",
+            "current": 0.52,
+            "kWh": 1.55,
+            "volt": 227.47
+        },
+        {
+            "PF": 88.57000000000001,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T08:30:00",
+            "current": 0.12,
+            "kWh": 1.1500000000000001,
+            "volt": 222.03
+        },
+        {
+            "PF": 83.68,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T08:30:00",
+            "current": 0.45,
+            "kWh": 1.01,
+            "volt": 228.31
+        },
+        {
+            "PF": 85.27,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T08:45:00",
+            "current": 0.61,
+            "kWh": 0.51,
+            "volt": 221.48000000000002
+        },
+        {
+            "PF": 93.81,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T08:45:00",
+            "current": 0.39,
+            "kWh": 1.62,
+            "volt": 225.62
+        },
+        {
+            "PF": 91.0,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T08:45:00",
+            "current": 0.8300000000000001,
+            "kWh": 1.6500000000000001,
+            "volt": 223.88
+        },
+        {
+            "PF": 93.3,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T08:45:00",
+            "current": 0.45,
+            "kWh": 0.72,
+            "volt": 217.3
+        },
+        {
+            "PF": 82.31,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T08:45:00",
+            "current": 0.75,
+            "kWh": 1.6400000000000001,
+            "volt": 226.94
+        },
+        {
+            "PF": 82.60000000000001,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T09:00:00",
+            "current": 0.75,
+            "kWh": 1.0,
+            "volt": 216.57
+        },
+        {
+            "PF": 93.75,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T09:00:00",
+            "current": 0.48,
+            "kWh": 1.41,
+            "volt": 218.41
+        },
+        {
+            "PF": 99.69,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T09:00:00",
+            "current": 0.86,
+            "kWh": 0.58,
+            "volt": 222.41
+        },
+        {
+            "PF": 98.18,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T09:00:00",
+            "current": 0.2,
+            "kWh": 1.12,
+            "volt": 229.72
+        },
+        {
+            "PF": 99.81,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T09:00:00",
+            "current": 0.2,
+            "kWh": 1.45,
+            "volt": 216.37
+        },
+        {
+            "PF": 89.10000000000001,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T09:15:00",
+            "current": 0.03,
+            "kWh": 1.62,
+            "volt": 216.89000000000001
+        },
+        {
+            "PF": 96.21000000000001,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T09:15:00",
+            "current": 0.71,
+            "kWh": 1.57,
+            "volt": 219.97
+        },
+        {
+            "PF": 88.42,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T09:15:00",
+            "current": 0.89,
+            "kWh": 1.36,
+            "volt": 217.36
+        },
+        {
+            "PF": 92.93,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T09:15:00",
+            "current": 0.22,
+            "kWh": 0.54,
+            "volt": 221.86
+        },
+        {
+            "PF": 98.76,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T09:15:00",
+            "current": 0.89,
+            "kWh": 1.87,
+            "volt": 223.04
+        },
+        {
+            "PF": 93.24,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T09:30:00",
+            "current": 0.44,
+            "kWh": 1.0,
+            "volt": 220.69
+        },
+        {
+            "PF": 99.22,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T09:30:00",
+            "current": 0.55,
+            "kWh": 1.74,
+            "volt": 222.53
+        },
+        {
+            "PF": 93.84,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T09:30:00",
+            "current": 0.9400000000000001,
+            "kWh": 1.34,
+            "volt": 218.28
+        },
+        {
+            "PF": 89.18,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T09:30:00",
+            "current": 0.26,
+            "kWh": 0.54,
+            "volt": 224.72
+        },
+        {
+            "PF": 84.38,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T09:30:00",
+            "current": 0.67,
+            "kWh": 1.45,
+            "volt": 225.73000000000002
+        },
+        {
+            "PF": 89.36,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T09:45:00",
+            "current": 0.9,
+            "kWh": 1.7,
+            "volt": 217.97
+        },
+        {
+            "PF": 81.12,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T09:45:00",
+            "current": 0.11,
+            "kWh": 1.79,
+            "volt": 227.73000000000002
+        },
+        {
+            "PF": 87.39,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T09:45:00",
+            "current": 0.6,
+            "kWh": 1.34,
+            "volt": 220.75
+        },
+        {
+            "PF": 84.48,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T09:45:00",
+            "current": 0.01,
+            "kWh": 0.5,
+            "volt": 227.22
+        },
+        {
+            "PF": 84.17,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T09:45:00",
+            "current": 0.15,
+            "kWh": 1.6300000000000001,
+            "volt": 229.91
+        },
+        {
+            "PF": 96.32000000000001,
+            "app_id": 12,
+            "app_name": "Office Light",
+            "created_date": "2018-03-16T10:00:00",
+            "current": 0.68,
+            "kWh": 0.78,
+            "volt": 217.97
+        },
+        {
+            "PF": 95.91,
+            "app_id": 13,
+            "app_name": "Living Room Light",
+            "created_date": "2018-03-16T10:00:00",
+            "current": 0.8200000000000001,
+            "kWh": 1.01,
+            "volt": 226.73000000000002
+        },
+        {
+            "PF": 81.92,
+            "app_id": 15,
+            "app_name": "Living Room TV",
+            "created_date": "2018-03-16T10:00:00",
+            "current": 0.65,
+            "kWh": 1.9100000000000001,
+            "volt": 223.32
+        },
+        {
+            "PF": 93.81,
+            "app_id": 16,
+            "app_name": "Living Room Air Conditioner",
+            "created_date": "2018-03-16T10:00:00",
+            "current": 0.14,
+            "kWh": 1.29,
+            "volt": 216.93
+        },
+        {
+            "PF": 90.62,
+            "app_id": 17,
+            "app_name": "Office Air Conditioner",
+            "created_date": "2018-03-16T10:00:00",
+            "current": 0.54,
+            "kWh": 1.1500000000000001,
+            "volt": 223.43
+        }
+    ]
+}
