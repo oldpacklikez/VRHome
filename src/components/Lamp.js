@@ -11,7 +11,6 @@ class Lamp extends React.Component {
             lamp: false,
             visible: false,
             bright: 50,
-            statebright: 0,
             color: "#FFF0FF",
             data: {
                 'app_id': 12
@@ -140,18 +139,21 @@ class Lamp extends React.Component {
     }
 
     componentDidMount() {
-        console.log("hit in")
+        var lampStatus,colorString,brightness
         // this.interval = setInterval(() =>
         fetch('http://161.246.5.69/api/appliances/' + this.props.id + '/info/?format=json&username=test&api_key=576ce7157410fef051b42ed5ed393498dc58a1b5')
             .then(response => response.json())
-            .then(data => this.setState({
-                lamp: data[0].value ? true : false,
-                color: "#" + (data[2].value).toString(16),
-                bright: data[1].value
-
-            })
+            .then(data => {
+               
+               
+                 lampStatus = data[0].value ? true : false
+                 colorString = "#" + (data[2].value).toString(16)
+                 brightness = data[1].value
+                
+            }
             )
         // , 3000);
+        this.setState({lamp: lampStatus,color: colorString,bright: brightness})
         this.reqLog(30)
 
     }

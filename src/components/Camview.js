@@ -8,9 +8,9 @@ class Camview extends React.Component {
         this.state = {
             color :"black",
             pos : {
-                x: 0,
-                y: 0,
-                z: 0
+                x: -1,
+                y: 0.8,
+                z: -3
             }
         };
 
@@ -136,7 +136,7 @@ class Camview extends React.Component {
                     </Entity>
                 </Entity>
 
-                <Entity camera="userHeight: 1.6 " look-controls  position={{ x: this.state.pos.x, y: this.state.pos.y, z: this.state.pos.z}}>
+                <Entity camera="userHeight: 1.6 " look-controls position={{ x: this.state.pos.x, y: this.state.pos.y, z: this.state.pos.z}}>
                      {/* <Entity cursor="fuse: true; fuseTimeout: 500"
                         position= "0 0 -0.5"
                         geometry="primitive: ring; radiusInner: 0.0001; radiusOuter: 0.005"
