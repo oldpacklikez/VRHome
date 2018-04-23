@@ -3,7 +3,6 @@ import 'babel-polyfill'
 import { Entity } from 'aframe-react'
 import React from 'react'
 
-
 class Tv extends React.Component {
     constructor(props) {
         super(props);
@@ -15,10 +14,7 @@ class Tv extends React.Component {
            
         };
        
-    }
-  
-
- 
+    } 
     tvSwitch() {
         this.setState({
             tv: !this.state.tv
@@ -145,7 +141,7 @@ class Tv extends React.Component {
                     color={
                         this.state.tv ? 'green' : 'red'
                     }
-                    position={{ x: this.props.x + -5.2, y: this.props.y + 1.5, z: this.props.z - 6 }}
+                    position={{ x: this.props.x -5.2, y: this.props.y + 1.5, z: this.props.z - 6 }}
                     events={{
                         click: this.tvSwitch.bind(this)
                     }}
@@ -298,7 +294,7 @@ class Tv extends React.Component {
 
 
                  
-
+           
 
 
                 </Entity>
