@@ -11,9 +11,9 @@ class Lamp extends React.Component {
             lamp: false,
             visible: false,
             bright: 50,
-            color: "#FFF0FF",
+			color: '#FFF0FF',
             data: {
-                'app_id': 12
+				app_id: 12
             },
             sum: [],
             dayCount: 0
