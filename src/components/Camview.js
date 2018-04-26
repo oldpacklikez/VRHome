@@ -7,7 +7,7 @@ class Camview extends React.Component {
     color: "black",
     pos: {
       x: -1,
-      y: 0.8,
+      y: 1.6,
       z: -3
     }
   };
@@ -24,22 +24,14 @@ class Camview extends React.Component {
   }
   movePointA() {
     this.setState({
-      pos: {
-        x: -1,
-        y: 1.6,
-        z: -3
-      }
+      pos: "-1 1.6 -3"
       // "-1 1.6 -5.441"
     });
   }
 
   movePointB() {
     this.setState({
-      pos: {
-        x: -1,
-        y: 1.6,
-        z: 4
-      }
+      pos: "-1 1.6 4"
       // "-1 1.6 5"
     });
   }
@@ -66,6 +58,7 @@ class Camview extends React.Component {
     });
   }
   render() {
+
     return (
       <Entity>
         <Entity
@@ -74,7 +67,6 @@ class Camview extends React.Component {
             mouseleave: this.trigColorOut.bind(this),
             click: this.movePointA.bind(this)
           }}
-
           //Move to A point
         >
           <Entity
@@ -138,17 +130,16 @@ class Camview extends React.Component {
           />
         </Entity>
 
-        <Entity
-          camera="userHieght:1.6"
-          look-controls
-          position={this.state.pos}
-        >
-          <Entity
-            cursor="fuse: true; fuseTimeout: 500"
-            position="0 0 -0.5"
-            geometry="primitive: ring; radiusInner: 0.0001; radiusOuter: 0.005"
-            // material="color: black; shader: flat"
-          />
+        <Entity camera look-controls position={this.state.pos}>
+     
+          {this.props.cursor && (
+            <Entity
+              cursor="fuse: true; fuseTimeout: 500"
+              position="0 0 -0.5"
+              geometry="primitive: ring; radiusInner: 0.0001; radiusOuter: 0.005"
+              material="color: pink; shader: flat"
+            />
+          )}
         </Entity>
       </Entity>
     );

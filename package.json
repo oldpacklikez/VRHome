@@ -1,6 +1,6 @@
 {
-  "name": "VRHOME",
-  "version": "3.0.1",
+  "name": "VRHome",
+  "version": "1.0.0",
   "description": "Boilerplate for building virtual reality experiences with A-Frame and React.",
   "dependencies": {
     "a-frame": "^0.0.0",
@@ -26,7 +26,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ngokevin/aframe-react-boilerplate.git"
+    "url": "git+https://github.com/packlikez/VRHome.git"
   },
   "keywords": [
     "aframe",
@@ -39,12 +39,12 @@
     "aframe-react",
     "webvr"
   ],
-  "author": "Kevin Ngo <kngo@mozilla.com>",
+  "author": "packlikez",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ngokevin/aframe-react-boilerplate/issues"
+    "url": "https://github.com/packlikez/VRHome/issues"
   },
-  "homepage": "https://localhost:4000",
+  "homepage": "https://localhost:3000",
   "devDependencies": {
     "gh-pages": "^1.1.0"
   }
