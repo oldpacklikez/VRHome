@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\p-ing\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js start
+  C:\Program Files\nodejs\node.exe C:\Users\p-ing\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js run publish
 
 PATH: 
-  C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\libnvvp;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\libnvvp;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\nodejs\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\Program Files\dotnet\;C:\Ruby25-x64\bin;C:\Program Files\Microsoft VS Code\bin;C:\Users\p-ing\AppData\Roaming\npm;C:\Users\p-ing\AppData\Local\GitHubDesktop\bin;C:\Users\p-ing\AppData\Local\GitHubDesktop\app-1.0.8\resources\app\git\cmd;C:\Users\p-ing\AppData\Local\Microsoft\WindowsApps;C:\Users\p-ing\AppData\Local\Programs\Python\Python36
+  C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\libnvvp;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\libnvvp;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\nodejs\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\Program Files\dotnet\;C:\Ruby25-x64\bin;C:\Program Files\Microsoft VS Code\bin;C:\Users\p-ing\AppData\Roaming\npm;C:\Users\p-ing\AppData\Local\GitHubDesktop\bin;C:\Users\p-ing\AppData\Local\GitHubDesktop\app-1.0.8\resources\app\git\cmd;C:\Users\p-ing\AppData\Local\Microsoft\WindowsApps;C:\Users\p-ing\AppData\Local\Programs\Python\Python36-32\Scripts;C:\Users\p-ing\AppData\Local\Programs\Python\Python36-32;
 
 Yarn version: 
   1.5.1
@@ -40,10 +40,6 @@ npm manifest:
       "eject": "react-scripts eject",
       "publish": "npm run build && gh-pages -d build"
     },
-    "repository": {
-      "type": "git",
-      "url": "git+https://github.com/ngokevin/aframe-react-boilerplate.git"
-    },
     "keywords": [
       "aframe",
       "react",
@@ -55,12 +51,7 @@ npm manifest:
       "aframe-react",
       "webvr"
     ],
-    "author": "Kevin Ngo <kngo@mozilla.com>",
-    "license": "MIT",
-    "bugs": {
-      "url": "https://github.com/ngokevin/aframe-react-boilerplate/issues"
-    },
-    "homepage": "https://localhost:4000",
+    "homepage": "https://packlikez.github.io/VRHome/",
     "devDependencies": {
       "gh-pages": "^1.1.0"
     }
@@ -2342,7 +2333,7 @@ Lockfile:
     dependencies:
       ms "2.0.0"
   
-  "debug@github:ngokevin/debug#noTimestamp", debug@~2.2.0:
+  debug@ngokevin/debug#noTimestamp, debug@~2.2.0:
     version "2.2.0"
     resolved "https://codeload.github.com/ngokevin/debug/tar.gz/ef5f8e66d49ce8bc64c6f282c15f8b7164409e3a"
   
@@ -2538,7 +2529,7 @@ Lockfile:
     dependencies:
       esutils "^2.0.2"
   
-  "document-register-element@github:dmarcos/document-register-element#8ccc532b7":
+  document-register-element@dmarcos/document-register-element#8ccc532b7:
     version "0.5.4"
     resolved "https://codeload.github.com/dmarcos/document-register-element/tar.gz/8ccc532b7f3744be954574caf3072a5fd260ca90"
   
@@ -8401,10 +8392,10 @@ Lockfile:
 
 Trace: 
   Error: Command failed.
-  Exit code: 3221225786
+  Exit code: 1
   Command: C:\WINDOWS\system32\cmd.exe
-  Arguments: /d /s /c react-scripts start
-  Directory: C:\Users\p-ing\Documents\Projects\aframe-react-boilerplate-master
+  Arguments: /d /s /c npm run build && gh-pages -d build
+  Directory: C:\Users\p-ing\Documents\Projects\VRHome
   Output:
   
       at ProcessTermError.MessageError (C:\Users\p-ing\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:186:110)
