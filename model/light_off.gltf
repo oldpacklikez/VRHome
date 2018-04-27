@@ -1,0 +1,220 @@
+{
+    "accessors" : [
+        {
+            "bufferView" : 0, 
+            "componentType" : 5121, 
+            "count" : 24, 
+            "max" : [
+                15
+            ], 
+            "min" : [
+                0
+            ], 
+            "type" : "SCALAR"
+        }, 
+        {
+            "bufferView" : 1, 
+            "componentType" : 5126, 
+            "count" : 16, 
+            "max" : [
+                1.0, 
+                0.07816815376281738, 
+                1.0
+            ], 
+            "min" : [
+                -1.0, 
+                0.052176475524902344, 
+                -1.0
+            ], 
+            "type" : "VEC3"
+        }, 
+        {
+            "bufferView" : 2, 
+            "componentType" : 5126, 
+            "count" : 16, 
+            "max" : [
+                1.0, 
+                -0.0, 
+                1.0
+            ], 
+            "min" : [
+                -1.0, 
+                -0.0, 
+                -1.0
+            ], 
+            "type" : "VEC3"
+        }, 
+        {
+            "bufferView" : 3, 
+            "componentType" : 5121, 
+            "count" : 36, 
+            "max" : [
+                23
+            ], 
+            "min" : [
+                0
+            ], 
+            "type" : "SCALAR"
+        }, 
+        {
+            "bufferView" : 4, 
+            "componentType" : 5126, 
+            "count" : 24, 
+            "max" : [
+                1.0, 
+                0.07816815376281738, 
+                1.0
+            ], 
+            "min" : [
+                -1.0, 
+                0.0, 
+                -1.0
+            ], 
+            "type" : "VEC3"
+        }, 
+        {
+            "bufferView" : 5, 
+            "componentType" : 5126, 
+            "count" : 24, 
+            "max" : [
+                0.7082494497299194, 
+                1.0, 
+                0.7082494497299194
+            ], 
+            "min" : [
+                -0.7082494497299194, 
+                -0.9999999403953552, 
+                -0.7082494497299194
+            ], 
+            "type" : "VEC3"
+        }
+    ], 
+    "asset" : {
+        "generator" : "Khronos Blender glTF 2.0 exporter", 
+        "version" : "2.0"
+    }, 
+    "bufferViews" : [
+        {
+            "buffer" : 0, 
+            "byteLength" : 24, 
+            "byteOffset" : 0, 
+            "target" : 34963
+        }, 
+        {
+            "buffer" : 0, 
+            "byteLength" : 192, 
+            "byteOffset" : 24, 
+            "target" : 34962
+        }, 
+        {
+            "buffer" : 0, 
+            "byteLength" : 192, 
+            "byteOffset" : 216, 
+            "target" : 34962
+        }, 
+        {
+            "buffer" : 0, 
+            "byteLength" : 36, 
+            "byteOffset" : 408, 
+            "target" : 34963
+        }, 
+        {
+            "buffer" : 0, 
+            "byteLength" : 288, 
+            "byteOffset" : 444, 
+            "target" : 34962
+        }, 
+        {
+            "buffer" : 0, 
+            "byteLength" : 288, 
+            "byteOffset" : 732, 
+            "target" : 34962
+        }
+    ], 
+    "buffers" : [
+        {
+            "byteLength" : 1020, 
+            "uri" : "data:application/octet-stream;base64,AAECAAMBBAUGBAcFCAkKCAsJDA0ODA8NAACAP6AWoD0AAIA/AACAvwC3VT0AAIA/AACAPwC3VT0AAIA/AACAv6AWoD0AAIA/AACAP6AWoD0AAIC/AACAPwC3VT0AAIA/AACAPwC3VT0AAIC/AACAP6AWoD0AAIA/AACAv6AWoD0AAIA/AACAvwC3VT0AAIC/AACAvwC3VT0AAIA/AACAv6AWoD0AAIC/AACAv6AWoD0AAIC/AACAPwC3VT0AAIC/AACAvwC3VT0AAIC/AACAP6AWoD0AAIC/AAAAAAAAAIAAAIA/AAAAAAAAAIAAAIA/AAAAAAAAAIAAAIA/AAAAAAAAAIAAAIA/AACAPwAAAAAAAACAAACAPwAAAAAAAACAAACAPwAAAAAAAACAAACAPwAAAAAAAACAAACAvwAAAIAAAACAAACAvwAAAIAAAACAAACAvwAAAIAAAACAAACAvwAAAIAAAACAAAAAAAAAAAAAAIC/AAAAAAAAAAAAAIC/AAAAAAAAAAAAAIC/AAAAAAAAAAAAAIC/AAECAAMBBAUGBAcFCAkKCAsJDA0ODA8NEBESEBMRFBUWFBcVm69yPwAAAACbr3I/m69yvwAAAACbr3K/m69yPwAAAACbr3K/m69yvwAAAACbr3I/AACAvwC3VT0AAIC/m69yPwAAAACbr3K/m69yvwAAAACbr3K/AACAPwC3VT0AAIC/AACAPwC3VT0AAIA/m69yvwAAAACbr3I/m69yPwAAAACbr3I/AACAvwC3VT0AAIA/AACAPwC3VT0AAIC/m69yPwAAAACbr3I/m69yPwAAAACbr3K/AACAPwC3VT0AAIA/AACAvwC3VT0AAIA/m69yvwAAAACbr3K/m69yvwAAAACbr3I/AACAvwC3VT0AAIC/AACAv6AWoD0AAIA/AACAP6AWoD0AAIC/AACAv6AWoD0AAIC/AACAP6AWoD0AAIA/AAAAgP//f78AAACAAAAAgP//f78AAACAAAAAgP//f78AAACAAAAAgP//f78AAACAAAAAAPC5NL/WTzW/AAAAAPC5NL/WTzW/AAAAAPC5NL/WTzW/AAAAAPC5NL/WTzW/AAAAAPC5NL/WTzU/AAAAAPC5NL/WTzU/AAAAAPC5NL/WTzU/AAAAAPC5NL/WTzU/1k81P/C5NL8AAACA1k81P/C5NL8AAACA1k81P/C5NL8AAACA1k81P/C5NL8AAACA1k81v/C5NL8AAACA1k81v/C5NL8AAACA1k81v/C5NL8AAACA1k81v/C5NL8AAACAAAAAAAAAgD8AAACAAAAAAAAAgD8AAACAAAAAAAAAgD8AAACAAAAAAAAAgD8AAACA"
+        }
+    ], 
+    "materials" : [
+        {
+            "extras" : {
+                "pbr_export_settings" : {}
+            }, 
+            "name" : "Material.009", 
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.21907911627112497, 
+                    0.21907911627112497, 
+                    0.21907911627112497, 
+                    1.0
+                ], 
+                "metallicFactor" : 0.0
+            }
+        }, 
+        {
+            "extras" : {
+                "pbr_export_settings" : {}
+            }, 
+            "name" : "Material.010", 
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.01103405819884029, 
+                    0.019672207827451937, 
+                    0.640000066757203, 
+                    1.0
+                ], 
+                "metallicFactor" : 0.0
+            }
+        }
+    ], 
+    "meshes" : [
+        {
+            "name" : "Plane", 
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "NORMAL" : 2, 
+                        "POSITION" : 1
+                    }, 
+                    "indices" : 0, 
+                    "material" : 1
+                }, 
+                {
+                    "attributes" : {
+                        "NORMAL" : 5, 
+                        "POSITION" : 4
+                    }, 
+                    "indices" : 3, 
+                    "material" : 0
+                }
+            ]
+        }
+    ], 
+    "nodes" : [
+        {
+            "mesh" : 0, 
+            "name" : "Plane.009", 
+            "scale" : [
+                0.8899999856948853, 
+                1.0, 
+                0.4899999797344208
+            ], 
+            "translation" : [
+                1.632638692855835, 
+                2.6287686824798584, 
+                -1.760326623916626
+            ]
+        }
+    ], 
+    "scene" : 0, 
+    "scenes" : [
+        {
+            "name" : "Scene", 
+            "nodes" : [
+                0
+            ]
+        }
+    ]
+}
