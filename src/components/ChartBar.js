@@ -5,6 +5,7 @@ const ChartBar = (pos,hi, value) =>
     geometry={{primitive:'box',height:pos.hi,width:0.25,depth:0.3,}}
     material={{color:"white"}}
     position={pos.pos}
+    
   >
 
     <Entity

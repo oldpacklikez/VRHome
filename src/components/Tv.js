@@ -173,7 +173,7 @@ class Tv extends React.Component {
       else high.push(sum[day - i + maxDay] / 100);
     }
     let max = Math.max(...high);
-
+    max = max==0?1.2:max;
     return (
       <Entity>
         {/* ON panel */}

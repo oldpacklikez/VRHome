@@ -12,7 +12,7 @@ class Conditioner extends React.Component {
       temp: 25,
       colordown: "black",
       colorup: "black",
-      sum: []
+      sum: new Array(31).fill(0)
     };
   }
 
@@ -35,7 +35,9 @@ class Conditioner extends React.Component {
     var sum = new Array(30).fill(0);
     var temp;
     return fetch(
-      "http://"+this.props.endPoint+"/api/app_usage_log/?format=json&username=test&api_key=576ce7157410fef051b42ed5ed393498dc58a1b5&start_time=" +
+      "http://" +
+        this.props.endPoint +
+        "/api/app_usage_log/?format=json&username=test&api_key=576ce7157410fef051b42ed5ed393498dc58a1b5&start_time=" +
         this.timeFormat(day) +
         "&end_time=" +
         this.timeFormat(0) +
@@ -48,18 +50,20 @@ class Conditioner extends React.Component {
         temp.forEach((item) => {
           let n = new Date(item.created_date).getDate();
           sum[n] = (sum[n] ? sum[n] : 0) + item.kWh;
+       
         });
-      })
-      .then(
+        console.log(sum)
         this.setState((prevState) => ({
           ...prevState,
           sum: sum
-        }))
-      );
+        }));
+      });
   }
   reqCon(cmd, value) {
     fetch(
-      "http://"+this.props.endPoint+"/api/appliances/" +
+      "http://" +
+        this.props.endPoint +
+        "/api/appliances/" +
         this.props.id +
         "/command/?format=json&username=test&api_key=576ce7157410fef051b42ed5ed393498dc58a1b5",
       {
@@ -118,9 +122,11 @@ class Conditioner extends React.Component {
 
     this.reqCon("set_temperature", this.state.temp);
   }
-  componentDidMount() {
+  reqConInfo() {
     fetch(
-      "http://"+this.props.endPoint+"/api/appliances/" +
+      "http://" +
+        this.props.endPoint +
+        "/api/appliances/" +
         this.props.id +
         "/info/?format=json&username=test&api_key=576ce7157410fef051b42ed5ed393498dc58a1b5"
     )
@@ -131,7 +137,10 @@ class Conditioner extends React.Component {
           temp: data[1].value
         })
       );
-    this.reqLog(30);
+  }
+   componentDidMount() {
+     this.reqConInfo();
+     this.reqLog(30);
   }
   render() {
     let { sum } = this.state;
@@ -139,12 +148,16 @@ class Conditioner extends React.Component {
     let day = date.getDate();
     let maxDay = new Date(date.getMonth, date.getFullYear, 0);
     const { app_id } = this.state;
-    let high = [];
+    let high = new Array(7).fill(0);
+
     for (let i = 0; i <= 6; i++) {
-      if (day - i >= 0) high.push(sum[day - i] / 100);
-      else high.push(sum[day - i + maxDay] / 100);
+      if (day - i >= 0) high[i] = sum[day - i] / 100;
+      else high[i] = sum[day - i + maxDay] / 100;
     }
     let max = Math.max(...high);
+
+    max = max == 0 ? 1.2 : max;
+
     return (
       <Entity>
         {/* ON panel */}
@@ -236,83 +249,86 @@ class Conditioner extends React.Component {
             />
           </Entity>
         </Entity>
-        {/* Graph */}
-        <Entity
-          primitive="a-plane"
-          position={{ x: this.props.x+3.561, y: this.props.y+2, z: this.props.z-4.534 }}
-          rotation="0 -90 0"
-          height="1.5"
-          width="3"
-          color="black"
-          opacity="0"
-          visible={this.state.con}
-        >
-          <Entity
-            primitive="a-plane"
-            position={{ x: 0.039, y: -0.86, z: 0.039 }}
-            rotation="-90 0 0"
-            height="1.5"
-            width="3"
-            color="black"
-            opacity="0.5"
-            events={{
-              click: () => {}
-            }}
-          />
-          {/* day chart */}
-          {/* 1 */}
-          <ChartBar
-            pos={{ x: -1.2, y: (high[6] - max) / 2, z: 0.153 }}
-            hi={0.5 + high[6]}
-            value={Math.round(sum[day - 6])}
-          />
-          {/* 2 */}
-          <ChartBar
-            pos={{ x: -0.8, y: (high[5] - max) / 2, z: 0.153 }}
-            hi={0.5 + high[5]}
-            value={Math.round(sum[day - 5])}
-          />
 
-          {/* 3 */}
-          <ChartBar
-            pos={{ x: -0.4, y: (high[4] - max) / 2, z: 0.153 }}
-            hi={0.5 + high[4]}
-            value={Math.round(sum[day - 4])}
-          />
-
-          {/* 4 */}
-          <ChartBar
-            pos={{ x: 0, y: (high[3] - max) / 2, z: 0.153 }}
-            hi={0.5 + high[3]}
-            value={Math.round(sum[day - 3])}
-          />
-
-          {/* 5 */}
-          <ChartBar
-            pos={{ x: 0.4, y: (high[2] - max) / 2, z: 0.153 }}
-            hi={0.5 + high[2]}
-            value={Math.round(sum[day - 2])}
-          />
-
-          {/* 6 */}
-          <ChartBar
-            pos={{ x: 0.8, y: (high[1] - max) / 2, z: 0.153 }}
-            hi={0.5 + high[1]}
-            value={Math.round(sum[day - 1])}
-          />
-          {/* 7 */}
-          <ChartBar
-            pos={{ x: 1.2, y: (high[0] - max) / 2, z: 0.153 }}
-            hi={0.5 + high[0]}
-            value={Math.round(sum[day - 0])}
-          />
-        </Entity>
         {/* con model */}
         <Entity
           gltf-model={this.state.con ? "#CON_ON" : "#CON_OFF"}
           position={{ x: this.props.x, y: this.props.y, z: this.props.z }}
           scale={{ x: 2, y: 2, z: 2 }}
-        />
+        >
+          {/* Graph */}
+          <Entity
+            primitive="a-plane"
+            position={{ x: 2, y: 1, z: -2.234 }}
+            rotation="0 -90 0"
+            height="1.5"
+            width="3"
+            color="black"
+            scale="0.5 0.5 0.5"
+            opacity="0"
+            visible={this.state.con}
+          >
+            <Entity
+              primitive="a-plane"
+              position={{ x: 0.039, y: -0.86, z: 0.039 }}
+              rotation="-90 0 0"
+              height="1.5"
+              width="3"
+              color="black"
+              opacity="0.5"
+              events={{
+                click: () => {}
+              }}
+            />
+            {/* day chart */}
+            {/* 1 */}
+            <ChartBar
+              pos={{ x: -1.2, y: (high[6] - max) / 2, z: 0.153 }}
+              hi={0.5 + high[6]}
+              value={Math.round(sum[day - 6])}
+            />
+            {/* 2 */}
+            <ChartBar
+              pos={{ x: -0.8, y: (high[5] - max) / 2, z: 0.153 }}
+              hi={0.5 + high[5]}
+              value={Math.round(sum[day - 5])}
+            />
+
+            {/* 3 */}
+            <ChartBar
+              pos={{ x: -0.4, y: (high[4] - max) / 2, z: 0.153 }}
+              hi={0.5 + high[4]}
+              value={Math.round(sum[day - 4])}
+            />
+
+            {/* 4 */}
+            <ChartBar
+              pos={{ x: 0, y: (high[3] - max) / 2, z: 0.153 }}
+              hi={0.5 + high[3]}
+              value={Math.round(sum[day - 3])}
+            />
+
+            {/* 5 */}
+            <ChartBar
+              pos={{ x: 0.4, y: (high[2] - max) / 2, z: 0.153 }}
+              hi={0.5 + high[2]}
+              value={Math.round(sum[day - 2])}
+            />
+
+            {/* 6 */}
+            <ChartBar
+              pos={{ x: 0.8, y: (high[1] - max) / 2, z: 0.153 }}
+              hi={0.5 + high[1]}
+              value={Math.round(sum[day - 1])}
+            />
+            {/* 7 */}
+            <ChartBar
+              pos={{ x: 1.2, y: (high[0] - max) / 2, z: 0.153 }}
+              hi={0.5 + high[0]}
+              value={Math.round(sum[day - 0])}
+            />
+          </Entity>
+        </Entity>
       </Entity>
     );
   }

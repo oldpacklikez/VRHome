@@ -14,7 +14,7 @@ import { Provider, Consumer } from "./statemanager/Store";
 class App extends React.Component {
   state = {
     cursor: true,
-    endPoint: "192.168.2.108"
+    endPoint: "161.246.5.69"
   };
   render() {
     return (

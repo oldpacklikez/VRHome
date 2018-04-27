@@ -12,7 +12,7 @@ class Lamp extends React.Component {
     bright: 25,
     color: "#FFF0FF",
     app_id: this.props.id,
-    sum: []
+    sum: new Array(31).fill(0)
   };
 
   timeFormat(day) {
@@ -45,10 +45,9 @@ class Lamp extends React.Component {
         });
       })
       .then(
-        this.setState((prevState) => ({
-          ...prevState,
+        this.setState({
           sum: sum
-        }))
+        })
       );
   }
   reqLamp(cmd, value) {
@@ -71,38 +70,37 @@ class Lamp extends React.Component {
           }
         })
       }
-    );
+    ).then((response) => {
+      if (response.ok) this.reqLampInfo();
+    });
   }
-  regLampInfo(){
+  reqLampInfo() {
     var lampStatus, colorString, brightness;
-    // this.interval = setInterval(() =>
     fetch(
       "http://" +
         this.props.endPoint +
         "/api/appliances/" +
         this.props.id +
         "/info/?format=json&username=test&api_key=576ce7157410fef051b42ed5ed393498dc58a1b5"
-    ).then((response) => response.json())
+    )
+      .then((response) => response.json())
       .then((data) => {
-        lampStatus = data[0].value ? true : false;
+        lampStatus = data[0].value == 1 ? true : false;
         colorString = "#" + data[2].value.toString(16);
         brightness = data[1].value;
-      })
-      .then(
-        this.setState((prevState) => ({
-          ...prevState,
-          lamp: lampStatus ? lampStatus : false,
+
+        this.setState({
+          lamp: lampStatus ? true : false,
           color: colorString ? colorString : "white",
-          bright: brightness ? brightness : 25
-        }))
-      );
-    // , 3000);                                     
+          bright: brightness ? brightness : 15
+        });
+      });
   }
   lampControl(cmd) {
-    this.setState((prevState) => ({
-      ...prevState,
+    console.log("hit ", cmd);
+    this.setState({
       lamp: cmd
-    }));
+    });
     this.reqLamp("set_On_Off", this.state.lamp ? 1 : 0);
   }
 
@@ -113,18 +111,18 @@ class Lamp extends React.Component {
     else if (bright === 75) bright = 100;
     else bright = 25;
 
-    this.setState((prevState) => ({
-      ...prevState,
+    this.setState({
       bright: bright
-    }));
+    });
     this.reqLamp("set_brightness", this.state.bright);
   }
   colorLamp(index) {
+    if (!this.state.lamp) return;
     let color = [
       {
         nameColor: "Normal",
         textColor: "#ffffff",
-        codeColor:                                                                         16777215
+        codeColor: 16777215
       },
       {
         nameColor: "Warm",
@@ -145,16 +143,14 @@ class Lamp extends React.Component {
   }
 
   lampShow() {
-    this.setState((prevState) => ({
-      ...prevState,
-      visible: !prevState.visible
-    }));
+    this.setState({
+      visible: !this.state.visible
+    });
   }
 
-  componentDidMount() {
-    this.regLampInfo
-
-    this.reqLog(30);
+   componentDidMount() {
+     this.reqLampInfo();
+     this.reqLog(30);
   }
   render() {
     let { visible } = this.state;
@@ -163,13 +159,14 @@ class Lamp extends React.Component {
     let day = date.getDate();
     let maxDay = new Date(date.getMonth, date.getFullYear, 0);
     const { app_id } = this.state;
-    let high = [];
+    let high = new Array(7).fill(0);
     for (let i = 0; i <= 6; i++) {
-      if (day - i >= 0) high.push(sum[day - i] / 100);
-      else high.push(sum[day - i + maxDay] / 100);
+      if (day - i >= 0) high[i]=(sum[day - i] / 100);
+      else high[i]=(sum[day - i + maxDay] / 100);
     }
 
     let max = Math.max(...high);
+    max = max==0?1.2:max;
     return (
       <Entity
         position={{ x: this.props.x, y: this.props.y, z: this.props.z }}
@@ -227,7 +224,7 @@ class Lamp extends React.Component {
                   events={{
                     click: () => {
                       this.lampControl(false);
-                      context.setLamp(app_id, this.state.lamp, "white", 25);
+                      context.setLamp(app_id, this.state.lamp, "white", 15);
                     }
                   }}
                 >
@@ -371,9 +368,6 @@ class Lamp extends React.Component {
                     width="3"
                     color="black"
                     opacity="0.5"
-                    events={{
-                      click: () => {}
-                    }}
                   />
                   {/* day chart */}
                   {/* 1 */}
