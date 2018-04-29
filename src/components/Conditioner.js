@@ -50,13 +50,10 @@ class Conditioner extends React.Component {
         temp.forEach((item) => {
           let n = new Date(item.created_date).getDate();
           sum[n] = (sum[n] ? sum[n] : 0) + item.kWh;
-       
         });
-        console.log(sum)
-        this.setState((prevState) => ({
-          ...prevState,
+        this.setState({
           sum: sum
-        }));
+        });
       });
   }
   reqCon(cmd, value) {
@@ -80,6 +77,7 @@ class Conditioner extends React.Component {
         })
       }
     );
+    this.reqConInfo();
   }
   colorSelect(state, side) {
     if (state === "in") {
@@ -133,14 +131,14 @@ class Conditioner extends React.Component {
       .then((response) => response.json())
       .then((data) =>
         this.setState({
-          con: data[0].value ? true : false,
+          con: data[0].value == 1 ? true : false,
           temp: data[1].value
         })
       );
   }
-   componentDidMount() {
-     this.reqConInfo();
-     this.reqLog(30);
+  componentDidMount() {
+    this.reqConInfo();
+    this.reqLog(7);
   }
   render() {
     let { sum } = this.state;

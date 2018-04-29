@@ -43,12 +43,13 @@ class Lamp extends React.Component {
           let n = new Date(item.created_date).getDate();
           sum[n] = (sum[n] ? sum[n] : 0) + item.kWh;
         });
-      })
-      .then(
         this.setState({
           sum: sum
         })
-      );
+      })
+     
+       
+      
   }
   reqLamp(cmd, value) {
     fetch(
@@ -88,16 +89,16 @@ class Lamp extends React.Component {
         lampStatus = data[0].value == 1 ? true : false;
         colorString = "#" + data[2].value.toString(16);
         brightness = data[1].value;
-
+        console.log('Lamp',lampStatus,colorString,brightness)
         this.setState({
           lamp: lampStatus ? true : false,
           color: colorString ? colorString : "white",
           bright: brightness ? brightness : 15
-        });
+        })
       });
   }
   lampControl(cmd) {
-    console.log("hit ", cmd);
+    
     this.setState({
       lamp: cmd
     });
@@ -150,7 +151,7 @@ class Lamp extends React.Component {
 
    componentDidMount() {
      this.reqLampInfo();
-     this.reqLog(30);
+     this.reqLog(7);
   }
   render() {
     let { visible } = this.state;
@@ -164,9 +165,9 @@ class Lamp extends React.Component {
       if (day - i >= 0) high[i]=(sum[day - i] / 100);
       else high[i]=(sum[day - i + maxDay] / 100);
     }
-
     let max = Math.max(...high);
     max = max==0?1.2:max;
+     console.log(sum)
     return (
       <Entity
         position={{ x: this.props.x, y: this.props.y, z: this.props.z }}

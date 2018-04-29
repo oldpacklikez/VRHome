@@ -26,7 +26,9 @@ class Tv extends React.Component {
     var sum = new Array(30).fill(0);
     var temp;
     return fetch(
-      "http://"+this.props.endPoint+"/api/app_usage_log/?format=json&username=test&api_key=576ce7157410fef051b42ed5ed393498dc58a1b5&start_time=" +
+      "http://" +
+        this.props.endPoint +
+        "/api/app_usage_log/?format=json&username=test&api_key=576ce7157410fef051b42ed5ed393498dc58a1b5&start_time=" +
         this.timeFormat(day) +
         "&end_time=" +
         this.timeFormat(0) +
@@ -40,20 +42,19 @@ class Tv extends React.Component {
           let n = new Date(item.created_date).getDate();
           sum[n] = (sum[n] ? sum[n] : 0) + item.kWh;
         });
-      })
-      .then(
-        this.setState((prevState) => ({
-          ...prevState,
+        this.setState({
           sum: sum
-        }))
-      );
+        });
+      });
   }
   tvSwitch() {
     this.setState({
       tv: !this.state.tv
     });
     fetch(
-      "http://"+this.props.endPoint+"/api/appliances/15/command/?format=json&username=test&api_key=576ce7157410fef051b42ed5ed393498dc58a1b5",
+      "http://" +
+        this.props.endPoint +
+        "/api/appliances/15/command/?format=json&username=test&api_key=576ce7157410fef051b42ed5ed393498dc58a1b5",
       {
         method: "POST",
         headers: {
@@ -77,7 +78,9 @@ class Tv extends React.Component {
 
   reqChannel(cmd, value) {
     fetch(
-      "http://"+this.props.endPoint+"/api/appliances/15/command/?format=json&username=test&api_key=576ce7157410fef051b42ed5ed393498dc58a1b5",
+      "http://" +
+        this.props.endPoint +
+        "/api/appliances/15/command/?format=json&username=test&api_key=576ce7157410fef051b42ed5ed393498dc58a1b5",
       {
         method: "POST",
         headers: {
@@ -146,19 +149,20 @@ class Tv extends React.Component {
   }
   componentDidMount() {
     fetch(
-      "http://"+this.props.endPoint+"/api/appliances/15/info/?format=json&username=test&api_key=576ce7157410fef051b42ed5ed393498dc58a1b5"
+      "http://" +
+        this.props.endPoint +
+        "/api/appliances/15/info/?format=json&username=test&api_key=576ce7157410fef051b42ed5ed393498dc58a1b5"
     )
       .then((response) => response.json())
       .then((data) =>
         this.setState({
-          tv: data[0].value ? true : false,
+          tv: data[0].value==1 ? true : false,
           vol: data[1].value,
           channel: data[2].value
         })
       );
 
-      this.reqLog(30)
-
+    this.reqLog(7);
   }
 
   render() {
@@ -169,11 +173,12 @@ class Tv extends React.Component {
     const { app_id } = this.state;
     let high = new Array(7).fill(0);
     for (let i = 0; i <= 6; i++) {
-      if (day - i >= 0) high.push(sum[day - i] / 100);
-      else high.push(sum[day - i + maxDay] / 100);
+      if (day - i >= 0) high[i] = sum[day - i] / 100;
+      else high[i] = sum[day - i + maxDay] / 100;
     }
     let max = Math.max(...high);
-    max = max==0?1.2:max;
+    max = max == 0 ? 1.2 : max;
+    console.log("hi", high, "max", max, "sum", sum);
     return (
       <Entity>
         {/* ON panel */}
@@ -378,7 +383,11 @@ class Tv extends React.Component {
         </Entity>
         <Entity
           primitive="a-plane"
-          position={{ x: this.props.x-5., y: this.props.y+0.535, z: this.props.z-3.758 }}
+          position={{
+            x: this.props.x - 5,
+            y: this.props.y + 0.535,
+            z: this.props.z - 3.758
+          }}
           rotation="0 0 0"
           height="1.5"
           width="3"
