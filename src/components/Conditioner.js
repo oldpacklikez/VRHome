@@ -251,6 +251,9 @@ class Conditioner extends React.Component {
 
         {/* con model */}
         <Entity
+
+
+
           gltf-model={ "#CON_ON" }
           position={{ x: this.props.x, y: this.props.y, z: this.props.z }}
           scale={{ x: 2, y: 2, z: 2 }}

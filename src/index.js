@@ -9,7 +9,7 @@ import Tv from "./components/Tv";
 import Lamp from "./components/Lamp";
 import Camview from "./components/Camview";
 import { Provider, Consumer } from "./statemanager/Store";
-import ErrorBoundary from "./components/ErrorBoundary"
+
 class App extends React.Component {
   state = {
     cursor: true,
@@ -54,8 +54,7 @@ class App extends React.Component {
           {/* Home Appliance */}
           <Conditioner endPoint={this.state.endPoint} x={3} y={0} z={0} id={"16"} />
           <Conditioner endPoint={this.state.endPoint} x={3} y={0} z={9} id={"17"} />
-          <ErrorBoundary>
-          <Tv endPoint={this.state.endPoint} x={0} y={0} z={0} id={"15"}/></ErrorBoundary>
+          <Tv endPoint={this.state.endPoint} x={0} y={0} z={0} id={"15"}/>
           <Lamp endPoint={this.state.endPoint} x={0} y={0} z={-7} rotate={"0 0 0"} id={"13"} />
           <Lamp endPoint={this.state.endPoint} x={0} y={0} z={7} rotate={"0 180 0"} id={"12"} />
         </Scene>

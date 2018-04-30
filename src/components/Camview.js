@@ -7,15 +7,21 @@ class Camview extends React.Component {
     color: "black",
     pos: {
       x: -1,
-      y: 1.6,
+      y: 0,
       z: -3
     }
   };
+ 
 
   trigColorIn() {
-    this.setState({
+    this.setState((prevState)=>({
+      pos:{
+        x: prevState.pos.x,
+        y: 1.6,
+        z: prevState.pos.z
+      },
       color: "blue"
-    });
+    }));
   }
   trigColorOut() {
     this.setState({
@@ -24,15 +30,23 @@ class Camview extends React.Component {
   }
   movePointA() {
     this.setState({
-      pos: "-1 1.6 -3"
-      // "-1 1.6 -5.441"
+      pos: {
+        x: -1,
+        y: 1.6,
+        z: -3
+      }
+      // "-1 1.6 -3"
     });
   }
 
   movePointB() {
     this.setState({
-      pos: "-1 1.6 4"
-      // "-1 1.6 5"
+      pos: {
+        x: -1,
+        y: 1.6,
+        z: 4
+      }
+      // "-1 1.6 4"
     });
   }
 
@@ -70,7 +84,7 @@ class Camview extends React.Component {
           //Move to A point
         >
           <Entity
-            primitive="a-circle"
+            primitive="a-sphere"
             rotation="-90 0 0"
             position="-1 0.3 -3"
             scale="0.3 0.3 0.3"
@@ -89,7 +103,7 @@ class Camview extends React.Component {
           }}
         >
           <Entity
-            primitive="a-circle"
+            primitive="a-sphere"
             rotation="-90 0 0"
             position="-1 0.3 5"
             scale="0.3 0.3 0.3"
@@ -107,7 +121,7 @@ class Camview extends React.Component {
           }}
         >
           <Entity
-            primitive="a-circle"
+            primitive="a-sphere"
             rotation="-90 0 0"
             position="-5 0.3 -2"
             scale="0.3 0.3 0.3"
@@ -122,7 +136,7 @@ class Camview extends React.Component {
           }}
         >
           <Entity
-            primitive="a-circle"
+            primitive="a-sphere"
             rotation="-90 0 0"
             position="-6 0.3 5"
             scale="0.3 0.3 0.3"
@@ -130,31 +144,17 @@ class Camview extends React.Component {
           />
         </Entity>
 
-
-
-
-           {this.props.cursor && <Entity camera position={this.state.pos}>
+        <Entity camera look-controls position={this.state.pos}>
      
-    (
-       <Entity
-         cursor="fuse: true; fuseTimeout: 500"
-         position="0 0 -0.5"
-         geometry="primitive: ring; radiusInner: 0.0001; radiusOuter: 0.005"
-         material="color: pink; shader: flat"
-       />
-     )
-   </Entity>}
-   {!this.props.cursor &&    <Entity camera look-controls position={this.state.pos}>
-     
-          (
+          {this.props.cursor && (
             <Entity
               cursor="fuse: true; fuseTimeout: 500"
               position="0 0 -0.5"
               geometry="primitive: ring; radiusInner: 0.0001; radiusOuter: 0.005"
               material="color: pink; shader: flat"
             />
-          )
-        </Entity>}
+          )}
+        </Entity>
       </Entity>
     );
   }
