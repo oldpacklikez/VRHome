@@ -1,10 +1,9 @@
 import "aframe";
-import "babel-polyfill";
 import { Entity } from "aframe-react";
 import React from "react";
-import { Provider, Consumer } from "../statemanager/Store";
+import { Consumer } from "../statemanager/Store";
 import ChartBar from "./ChartBar";
-
+import 'babel-polyfill';
 class Lamp extends React.Component {
   state = {
     lamp: false,
@@ -17,16 +16,16 @@ class Lamp extends React.Component {
 
   timeFormat(day) {
     let d = new Date();
-    if (day != 0) {
+    if (day !== 0) {
       d.setDate(d.getDate() - day);
       d.setUTCHours(0, 0, 0);
     }
     return d.toISOString().split(".")[0];
   }
-  reqLog(day) {
-    var sum = new Array(30).fill(0);
+  async reqLog(day) {
+    var sum = new Array(31).fill(0);
     var temp;
-    return fetch(
+    fetch(
       "http://" +
         this.props.endPoint +
         "/api/app_usage_log/?format=json&username=test&api_key=576ce7157410fef051b42ed5ed393498dc58a1b5&start_time=" +
@@ -36,20 +35,23 @@ class Lamp extends React.Component {
         "&app_id=" +
         this.props.id
     )
-      .then((response) => response.json())
-      .then((data) => {
+      await ((response) => {
+       
+        response.json();
+      })
+      await ((data) => {
+        console.log(data)
         temp = data.objects;
+          console.log(data)
         temp.forEach((item) => {
           let n = new Date(item.created_date).getDate();
           sum[n] = (sum[n] ? sum[n] : 0) + item.kWh;
         });
         this.setState({
           sum: sum
-        })
-      })
-     
+        });
        
-      
+      });
   }
   reqLamp(cmd, value) {
     fetch(
@@ -86,19 +88,18 @@ class Lamp extends React.Component {
     )
       .then((response) => response.json())
       .then((data) => {
-        lampStatus = data[0].value == 1 ? true : false;
+        lampStatus = data[0].value === 1 ? true : false;
         colorString = "#" + data[2].value.toString(16);
         brightness = data[1].value;
-        console.log('Lamp',lampStatus,colorString,brightness)
+
         this.setState({
           lamp: lampStatus ? true : false,
           color: colorString ? colorString : "white",
           bright: brightness ? brightness : 15
-        })
+        });
       });
   }
   lampControl(cmd) {
-    
     this.setState({
       lamp: cmd
     });
@@ -148,10 +149,13 @@ class Lamp extends React.Component {
       visible: !this.state.visible
     });
   }
+  
+  componentWillMount(){
+    this.reqLog(7);
+  }
+  componentDidMount() {
+    this.reqLampInfo();
 
-   componentDidMount() {
-     this.reqLampInfo();
-     this.reqLog(7);
   }
   render() {
     let { visible } = this.state;
@@ -162,12 +166,12 @@ class Lamp extends React.Component {
     const { app_id } = this.state;
     let high = new Array(7).fill(0);
     for (let i = 0; i <= 6; i++) {
-      if (day - i >= 0) high[i]=(sum[day - i] / 100);
-      else high[i]=(sum[day - i + maxDay] / 100);
+      if (day - i >= 0) high[i] = sum[day - i] / 100;
+      else high[i] = sum[day - i + maxDay] / 100;
     }
     let max = Math.max(...high);
-    max = max==0?1.2:max;
-     console.log(sum)
+    max = max === 0 ? 1.2 : max;
+    
     return (
       <Entity
         position={{ x: this.props.x, y: this.props.y, z: this.props.z }}
@@ -246,15 +250,15 @@ class Lamp extends React.Component {
                   width="0.5"
                   color="#ffffff"
                   events={{
-                    click: () => (
-                      this.colorLamp(0),
+                    click: () => {
+                      this.colorLamp(0);
                       context.setLamp(
                         app_id,
                         this.state.lamp,
                         this.state.color,
                         this.state.bright
-                      )
-                    )
+                      );
+                    }
                   }}
                 >
                   <Entity
@@ -274,15 +278,15 @@ class Lamp extends React.Component {
                   width="0.5"
                   color="#ff9329"
                   events={{
-                    click: () => (
-                      this.colorLamp(1),
+                    click: () => {
+                      this.colorLamp(1);
                       context.setLamp(
                         app_id,
                         this.state.lamp,
                         this.state.color,
                         this.state.bright
-                      )
-                    )
+                      );
+                    }
                   }}
                 >
                   <Entity
@@ -302,15 +306,15 @@ class Lamp extends React.Component {
                   width="0.5"
                   color="#409cff"
                   events={{
-                    click: () => (
-                      this.colorLamp(2),
+                    click: () => {
+                      this.colorLamp(2);
                       context.setLamp(
                         app_id,
                         this.state.lamp,
                         this.state.color,
                         this.state.bright
-                      )
-                    )
+                      );
+                    }
                   }}
                 >
                   <Entity
@@ -330,15 +334,15 @@ class Lamp extends React.Component {
                   width="1"
                   color="black"
                   events={{
-                    click: () => (
-                      this.brightToggle(),
+                    click: () => {
+                      this.brightToggle();
                       context.setLamp(
                         app_id,
                         this.state.lamp,
                         this.state.color,
                         this.state.bright
-                      )
-                    )
+                      );
+                    }
                   }}
                 >
                   <Entity

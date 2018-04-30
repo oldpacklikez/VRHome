@@ -1,8 +1,8 @@
 import "aframe";
-import "babel-polyfill";
 import { Entity } from "aframe-react";
 import React from "react";
 import ChartBar from "./ChartBar";
+import 'babel-polyfill';
 class Conditioner extends React.Component {
   constructor(props) {
     super(props);
@@ -25,16 +25,16 @@ class Conditioner extends React.Component {
   }
   timeFormat(day) {
     let d = new Date();
-    if (day != 0) {
+    if (day !== 0) {
       d.setDate(d.getDate() - day);
       d.setUTCHours(0, 0, 0);
     }
     return d.toISOString().split(".")[0];
   }
   reqLog(day) {
-    var sum = new Array(30).fill(0);
+    var sum = new Array(31).fill(0);
     var temp;
-    return fetch(
+    fetch(
       "http://" +
         this.props.endPoint +
         "/api/app_usage_log/?format=json&username=test&api_key=576ce7157410fef051b42ed5ed393498dc58a1b5&start_time=" +
@@ -46,11 +46,12 @@ class Conditioner extends React.Component {
     )
       .then((response) => response.json())
       .then((data) => {
-        temp = data.objects;
+        temp = data.objects
         temp.forEach((item) => {
           let n = new Date(item.created_date).getDate();
           sum[n] = (sum[n] ? sum[n] : 0) + item.kWh;
         });
+     
         this.setState({
           sum: sum
         });
@@ -131,7 +132,7 @@ class Conditioner extends React.Component {
       .then((response) => response.json())
       .then((data) =>
         this.setState({
-          con: data[0].value == 1 ? true : false,
+          con: data[0].value === 1 ? true : false,
           temp: data[1].value
         })
       );
@@ -145,7 +146,7 @@ class Conditioner extends React.Component {
     let date = new Date();
     let day = date.getDate();
     let maxDay = new Date(date.getMonth, date.getFullYear, 0);
-    const { app_id } = this.state;
+
     let high = new Array(7).fill(0);
 
     for (let i = 0; i <= 6; i++) {
@@ -154,7 +155,7 @@ class Conditioner extends React.Component {
     }
     let max = Math.max(...high);
 
-    max = max == 0 ? 1.2 : max;
+    max = max === 0 ? 1.2 : max;
 
     return (
       <Entity>
@@ -250,7 +251,7 @@ class Conditioner extends React.Component {
 
         {/* con model */}
         <Entity
-          gltf-model={this.state.con ? "#CON_ON" : "#CON_OFF"}
+          gltf-model={ "#CON_ON" }
           position={{ x: this.props.x, y: this.props.y, z: this.props.z }}
           scale={{ x: 2, y: 2, z: 2 }}
         >

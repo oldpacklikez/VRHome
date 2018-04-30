@@ -30,7 +30,7 @@ export class Provider extends React.Component {
     )
       .then((response) => response.json())
       .then((data) => {
-        lampStatus = data[0].value == 1 ? true : false;
+        lampStatus = data[0].value === 1 ? true : false;
         colorString = "#" + data[2].value.toString(16);
         brightness = data[1].value;
         console.log(

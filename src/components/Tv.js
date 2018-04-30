@@ -4,28 +4,27 @@ import { Entity } from "aframe-react";
 import React from "react";
 import ChartBar from "./ChartBar";
 class Tv extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      tv: false,
-      vol: 50,
-      channel: 0,
-      visible: false,
-      sum: []
-    };
-  }
+  state = {
+    tv: false,
+    vol: 50,
+    channel: 0,
+    sum:new Array(31).fill(0)
+  };
+ 
   timeFormat(day) {
     let d = new Date();
-    if (day != 0) {
+    if (day !== 0) {
       d.setDate(d.getDate() - day);
       d.setUTCHours(0, 0, 0);
     }
     return d.toISOString().split(".")[0];
   }
   reqLog(day) {
-    var sum = new Array(30).fill(0);
+    
+    var sum = new Array(31).fill(0);
     var temp;
-    return fetch(
+    setInterval(
+    fetch(
       "http://" +
         this.props.endPoint +
         "/api/app_usage_log/?format=json&username=test&api_key=576ce7157410fef051b42ed5ed393498dc58a1b5&start_time=" +
@@ -35,45 +34,28 @@ class Tv extends React.Component {
         "&app_id=" +
         this.props.id
     )
-      .then((response) => response.json())
-      .then((data) => {
-        temp = data.objects;
-        temp.forEach((item) => {
-          let n = new Date(item.created_date).getDate();
-          sum[n] = (sum[n] ? sum[n] : 0) + item.kWh;
-        });
-        this.setState({
-          sum: sum
-        });
-      });
+      .then((response) => {
+        response.json();
+      })
+      .then((data) => {console.log(data)
+        if(data)
+          {
+            temp = data.objects;
+          temp.forEach((item) => {
+            let n = new Date(item.created_date).getDate();
+            sum[n] = (sum[n] ? sum[n] : 0) + item.kWh;
+          });
+          this.setState({
+            sum: sum
+          });
+      }
+      }),5000)
   }
   tvSwitch() {
-    this.setState({
-      tv: !this.state.tv
-    });
-    fetch(
-      "http://" +
-        this.props.endPoint +
-        "/api/appliances/15/command/?format=json&username=test&api_key=576ce7157410fef051b42ed5ed393498dc58a1b5",
-      {
-        method: "POST",
-        headers: {
-          Authorization: "key=AIzaSyCkjT4p2-OPguWztJUmXI8Iw3nxuaWCIFI",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          cmd_name: "set_On_Off",
-          parameters: {
-            setTo: this.state.tv ? 1 : 0
-          }
-        })
-      }
+    this.setState(
+      { tv: this.state.tv ? false : true },
+      this.reqChannel("set_On_Off", this.state.tv ? 1 : 0)
     );
-  }
-  tvShow() {
-    this.setState({
-      visible: !this.state.visible
-    });
   }
 
   reqChannel(cmd, value) {
@@ -95,8 +77,6 @@ class Tv extends React.Component {
         })
       }
     );
-
-    console.log("Call reqChannel");
   }
   upChannel() {
     if (this.state.channel < 6)
@@ -147,37 +127,46 @@ class Tv extends React.Component {
 
     this.reqChannel("set_volume", this.state.vol);
   }
-  componentDidMount() {
+  reqTVinfo() {
     fetch(
       "http://" +
         this.props.endPoint +
         "/api/appliances/15/info/?format=json&username=test&api_key=576ce7157410fef051b42ed5ed393498dc58a1b5"
     )
       .then((response) => response.json())
-      .then((data) =>
-        this.setState({
-          tv: data[0].value==1 ? true : false,
-          vol: data[1].value,
-          channel: data[2].value
-        })
-      );
-
+      .then((data) => {
+        try {
+          this.setState({
+            tv: [data[0].value === 1 ? true : false],
+            vol: [data[1].value],
+            channel: [data[2].value]
+          });
+        } catch (err) {
+          console.log("Tv error", err);
+        }
+      });
+  }
+  componentWillMount(){
     this.reqLog(7);
+  }
+  componentDidMount() {
+    this.reqTVinfo();
+   
   }
 
   render() {
-    let { sum } = this.state;
+    let sum = this.state.sum
     let date = new Date();
     let day = date.getDate();
     let maxDay = new Date(date.getMonth, date.getFullYear, 0);
-    const { app_id } = this.state;
+
     let high = new Array(7).fill(0);
-    for (let i = 0; i <= 6; i++) {
+    for (let i = 0; i < 7; i++) {
       if (day - i >= 0) high[i] = sum[day - i] / 100;
       else high[i] = sum[day - i + maxDay] / 100;
     }
     let max = Math.max(...high);
-    max = max == 0 ? 1.2 : max;
+    max = max === 0 ? 1.2 : max;
     console.log("hi", high, "max", max, "sum", sum);
     return (
       <Entity>
@@ -461,9 +450,6 @@ class Tv extends React.Component {
           gltf-model={this.state.tv ? "#TV_ON" : "#TV_OFF"}
           position={{ x: this.props.x, y: this.props.y, z: this.props.z }}
           scale={{ x: 2, y: 2, z: 2 }}
-          events={{
-            click: this.tvShow.bind(this)
-          }}
         />
       </Entity>
     );

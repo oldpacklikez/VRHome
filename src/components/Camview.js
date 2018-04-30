@@ -130,17 +130,31 @@ class Camview extends React.Component {
           />
         </Entity>
 
-        <Entity camera look-controls position={this.state.pos}>
+
+
+
+           {this.props.cursor && <Entity camera position={this.state.pos}>
      
-          {this.props.cursor && (
+    (
+       <Entity
+         cursor="fuse: true; fuseTimeout: 500"
+         position="0 0 -0.5"
+         geometry="primitive: ring; radiusInner: 0.0001; radiusOuter: 0.005"
+         material="color: pink; shader: flat"
+       />
+     )
+   </Entity>}
+   {!this.props.cursor &&    <Entity camera look-controls position={this.state.pos}>
+     
+          (
             <Entity
               cursor="fuse: true; fuseTimeout: 500"
               position="0 0 -0.5"
               geometry="primitive: ring; radiusInner: 0.0001; radiusOuter: 0.005"
               material="color: pink; shader: flat"
             />
-          )}
-        </Entity>
+          )
+        </Entity>}
       </Entity>
     );
   }
